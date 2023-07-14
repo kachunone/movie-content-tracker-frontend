@@ -1,0 +1,11 @@
+.nav_links {
+  text-decoration: none;
+  color: #ffffff;
+  margin: 0.5rem;
+}
+
+.drawer {
+  display: grid;
+  align-self: center;
+  justify-items: center;
+}

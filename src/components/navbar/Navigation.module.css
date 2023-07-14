@@ -1,0 +1,45 @@
+.menu_btn {
+  display: none;
+  cursor: pointer;
+}
+
+.title {
+  color: white;
+  font-size: x-large;
+  text-decoration: none;
+}
+
+.title_drawer {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+  margin-bottom: 3rem;
+  color: rgb(255, 255, 255);
+  border-radius: 0.3rem;
+}
+
+@media (max-width: 768px) {
+  .menu_btn {
+    display: block;
+    position: absolute;
+    right: 1rem;
+  }
+  .links,
+  .auth {
+    display: none;
+  }
+}
+
+.line {
+  border-top: 1px solid rgba(255, 255, 255, 0.518);
+  margin: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.auth_container_drawer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0.5rem;
+}
