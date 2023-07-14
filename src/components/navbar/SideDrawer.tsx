@@ -13,7 +13,12 @@ const SideDrawer: React.FC<SideDrawerProps> = (props: SideDrawerProps) => {
     <CSSTransition
       in={props.show}
       timeout={200}
-      classNames="slide-in-left"
+      classNames={{
+        enterActive: styles.enter_active,
+        enter: styles.enter,
+        exitActive: styles.exit_active,
+        exit: styles.exit,
+      }}
       mountOnEnter
       unmountOnExit
     >

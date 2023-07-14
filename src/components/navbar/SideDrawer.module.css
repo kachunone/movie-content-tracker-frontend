@@ -5,5 +5,29 @@
   height: 100vh;
   width: 40%;
   z-index: 100;
-  background: #354057;
+  background: #1f2532;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.enter {
+  transform: translateX(-100%);
+}
+
+.enter_active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 200ms;
+}
+
+.exit {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.exit_active {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 200ms;
 }

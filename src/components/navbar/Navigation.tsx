@@ -11,6 +11,7 @@ import styles from "./Navigation.module.css";
 import { useState } from "react";
 import Image from "next/image";
 import menuIcon from "../../../public/menu_icon.svg";
+import disabledIcon from "../../../public/disabled_icon.svg";
 
 const Navigation: React.FC = () => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
@@ -30,7 +31,7 @@ const Navigation: React.FC = () => {
           CineTracker
         </Link>
         <div className={styles.links}>
-          {!drawerIsOpen && <NavLinks classname="header"></NavLinks>}
+          {!drawerIsOpen && <NavLinks></NavLinks>}
         </div>
         <div className={styles.auth}>
           {!drawerIsOpen && <AuthLinks classname="header"></AuthLinks>}
@@ -46,8 +47,18 @@ const Navigation: React.FC = () => {
         />
       </MainHeader>
       <SideDrawer show={drawerIsOpen}>
+        <Image
+          src={disabledIcon}
+          width={30}
+          height={30}
+          alt="Menu"
+          color="white"
+          onClick={closeDrawerHandler}
+          className={styles.disabled_btn}
+        />
         <p className={`${styles.title_drawer} ${styles.title}`}>CineTracker</p>
-        <NavLinks classname="drawer"></NavLinks>
+        <div className={styles.line}></div>
+        <NavLinks classname="drawer" onClick={closeDrawerHandler}></NavLinks>
         <div className={styles.line}></div>
         <div className={styles.auth_container_drawer}>
           <AuthLinks classname="drawer"></AuthLinks>

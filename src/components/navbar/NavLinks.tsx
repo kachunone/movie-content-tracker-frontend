@@ -3,19 +3,28 @@ import styles from "./NavLinks.module.css";
 import Link from "next/link";
 
 interface NavLinksProps {
-  classname: string;
+  classname?: string;
+  onClick?: () => void;
 }
 
 const NavLinks: React.FC<NavLinksProps> = (props) => {
-  const className =
-    props.classname === "drawer" ? styles.drawer : styles.header;
+  const className = props.classname === "drawer" ? styles.drawer : undefined;
+  const onClickFunc = props.classname === "drawer" ? props.onClick : undefined;
 
   return (
-    <div>
-      <Link href="/" className={`${styles.nav_links} ${className}`}>
+    <div className={styles.container}>
+      <Link
+        href="/"
+        className={`${styles.nav_links} ${className}`}
+        onClick={onClickFunc}
+      >
         Home
       </Link>
-      <Link href="/discovery" className={`${styles.nav_links} ${className}`}>
+      <Link
+        href="/movies"
+        className={`${styles.nav_links} ${className}`}
+        onClick={onClickFunc}
+      >
         Movies
       </Link>
     </div>

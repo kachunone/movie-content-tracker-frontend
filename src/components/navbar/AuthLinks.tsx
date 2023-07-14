@@ -3,7 +3,7 @@ import styles from "./AuthLinks.module.css";
 import Link from "next/link";
 
 interface AuthLinksProps {
-  classname: string;
+  classname?: string;
 }
 
 const AuthLinks: React.FC<AuthLinksProps> = (props) => {
