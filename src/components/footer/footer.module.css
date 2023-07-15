@@ -1,0 +1,11 @@
+.container {
+  height: 2.5rem;
+  background: #1f2532;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.p {
+  color: #ffffff;
+}
