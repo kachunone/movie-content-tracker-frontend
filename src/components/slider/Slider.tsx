@@ -2,31 +2,45 @@
 
 import React from "react";
 import Slider, { Settings } from "react-slick";
+import styles from "./Slider.module.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styles from "./Slider.module.css";
 import Card from "../card/Card";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import useSWR from "swr";
 
-const CustomArrows: React.FC = () => {
+interface Movie {
+  poster_path: string;
+}
+
+interface CustomArrowsProps {
+  listType: "now_playing" | "popular" | "top_rated" | "upcoming";
+}
+
+const CustomArrows: React.FC<CustomArrowsProps> = (props) => {
   const slider = React.useRef<Slider | null>(null);
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  const moviesAPI = process.env.NEXT_PUBLIC_MOVIES_API_KEY;
+  const url = `https://api.themoviedb.org/3/movie/${props.listType}?api_key=${moviesAPI}`;
+  const { data, error, isLoading } = useSWR(url, fetcher);
+
+  let MoviesList = [];
+  if (data) {
+    MoviesList = data.results.map((item: Movie, index: number) => {
+      return <Card key={index} posterPath={item.poster_path}></Card>;
+    });
+  }
 
   const settings: Settings = {
     arrows: false,
     dots: false,
-    variableWidth: true,
-    // adaptiveHeight: true,
-    swipeToSlide: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
     infinite: true,
-    slidesToScroll: 1,
-    speed: 900,
-
-    className: "center",
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 1800,
+    variableWidth: true,
     centerMode: true,
-    centerPadding: "60px",
   };
 
   return (
@@ -43,16 +57,7 @@ const CustomArrows: React.FC = () => {
         Prev
       </KeyboardArrowLeftIcon>
       <Slider ref={slider} {...settings} className={styles.slider}>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
+        {MoviesList}
       </Slider>
       <KeyboardArrowRightIcon
         onClick={() => slider?.current?.slickNext()}

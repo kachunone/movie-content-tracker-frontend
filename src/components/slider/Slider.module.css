@@ -3,10 +3,9 @@
   justify-content: center;
   align-items: center;
   height: 20rem;
-  margin-top: 5rem;
+  width: 100%;
 }
 
 .slider {
   width: 70vw;
-  border-radius: 0.5rem;
 }
