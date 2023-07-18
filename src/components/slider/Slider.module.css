@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+  margin-top: 5rem;
+}
+
+.slider {
+  width: 70vw;
+  border-radius: 0.5rem;
+}

@@ -15,5 +15,9 @@
 
 .container {
   height: 100%;
-  overflow-y: auto;
+  overflow: auto;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
 }

@@ -1,6 +1,7 @@
 .menu_btn {
   display: none;
-  cursor: pointer;
+  position: absolute;
+  right: 1rem;
 }
 
 .disabled_btn {
@@ -8,10 +9,24 @@
   right: 0.5rem;
   top: 0.5rem;
   cursor: pointer;
+  color: #ffdb10;
+  width: 2rem;
+  height: 2rem;
+}
+
+.movie_icon {
+  margin: 0.5rem;
+}
+
+.title_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .title {
-  color: white;
+  color: #ffdb10;
   font-size: x-large;
   text-decoration: none;
 }
@@ -20,26 +35,33 @@
   display: flex;
   justify-content: center;
   margin-top: 3.5rem;
-  color: rgb(255, 255, 255);
+  color: #ffdb10;
   border-radius: 0.3rem;
-  font-weight: bolder;
 }
 
 @media (max-width: 768px) {
   .menu_btn {
     display: block;
     position: absolute;
-    right: 1rem;
+    left: 1rem;
+    cursor: pointer;
   }
+
   .links,
   .auth {
     display: none;
   }
+
+  .title_container {
+    position: absolute;
+    right: 50%;
+    left: 50%;
+  }
 }
 
 .line {
-  border-top: 1px solid rgba(255, 255, 255, 0.518);
-  margin: 0.5rem;
+  border-top: 1px solid #ffdb10;
+  margin: 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
