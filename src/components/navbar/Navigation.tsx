@@ -40,7 +40,7 @@ const Navigation: React.FC = () => {
           {!drawerIsOpen && <NavLinks></NavLinks>}
         </div>
         <div className={styles.auth}>
-          {!drawerIsOpen && <AuthLinks classname="header"></AuthLinks>}
+          {!drawerIsOpen && <AuthLinks></AuthLinks>}
         </div>
         <div className={styles.menu_btn}>
           <MenuIcon
@@ -61,7 +61,7 @@ const Navigation: React.FC = () => {
 
         {/* <div className={styles.line}></div> */}
         <div className={styles.auth_container_drawer}>
-          <AuthLinks classname="drawer"></AuthLinks>
+          <AuthLinks isDrawer={true}></AuthLinks>
         </div>
       </SideDrawer>
       {drawerIsOpen && <Backdrop onClick={closeDrawerHandler}></Backdrop>}
