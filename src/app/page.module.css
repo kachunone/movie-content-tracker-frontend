@@ -5,10 +5,11 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  min-height: 100vh;
 }
 
 .searchBar_container {
-  background: #354057;
+  background: #9b2828;
   height: 4rem;
   display: flex;
   align-items: center;

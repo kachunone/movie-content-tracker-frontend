@@ -56,34 +56,40 @@ const CustomArrows: React.FC<CustomArrowsProps> = (props) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6">
-      <h6 className="text-yellow-500 text-2xl mb-0">{props.listTitle}</h6>
-      <div className="flex justify-center items-center h-70 w-full ">
-        <KeyboardArrowLeftIcon
-          style={{
-            width: "3rem",
-            height: "3rem",
-          }}
-          className="text-yellow-500 hover:text-yellow-600 cursor-pointer"
-          onClick={() => slider?.current?.slickPrev()}
-        >
-          Prev
-        </KeyboardArrowLeftIcon>
-        <Slider ref={slider} {...settings} className="w-[65vw]">
-          {MoviesList}
-        </Slider>
-        <KeyboardArrowRightIcon
-          onClick={() => slider?.current?.slickNext()}
-          style={{
-            width: "3rem",
-            height: "3rem",
-          }}
-          className="text-yellow-500 hover:text-yellow-600 cursor-pointer"
-        >
-          Next
-        </KeyboardArrowRightIcon>
-      </div>
-    </div>
+    <React.Fragment>
+      {!isLoading && (
+        <div className="flex flex-col items-center justify-center p-6">
+          <h6 className="text-yellow-500 text-2xl mb-0 font-semibold">
+            {props.listTitle}
+          </h6>
+          <div className="flex justify-center items-center h-70 w-full ">
+            <KeyboardArrowLeftIcon
+              style={{
+                width: "3rem",
+                height: "3rem",
+              }}
+              className="text-yellow-500 hover:text-yellow-600 cursor-pointer"
+              onClick={() => slider?.current?.slickPrev()}
+            >
+              Prev
+            </KeyboardArrowLeftIcon>
+            <Slider ref={slider} {...settings} className="w-[65vw]">
+              {MoviesList}
+            </Slider>
+            <KeyboardArrowRightIcon
+              onClick={() => slider?.current?.slickNext()}
+              style={{
+                width: "3rem",
+                height: "3rem",
+              }}
+              className="text-yellow-500 hover:text-yellow-600 cursor-pointer"
+            >
+              Next
+            </KeyboardArrowRightIcon>
+          </div>
+        </div>
+      )}
+    </React.Fragment>
   );
 };
 

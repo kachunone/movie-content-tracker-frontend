@@ -1,8 +1,9 @@
+"use client";
+
 import React from "react";
-import styles from "./page.module.css";
 
 const Movies: React.FC = () => {
-  return <div className={styles.container}>Movies</div>;
+  return <div className="h-screen min-h-screen mt-16 bg-red-900">Movies</div>;
 };
 
 export default Movies;

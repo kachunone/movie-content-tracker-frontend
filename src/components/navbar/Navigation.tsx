@@ -59,10 +59,11 @@ const Navigation: React.FC = () => {
         <p className={`${styles.title_drawer} ${styles.title}`}>CineTracker</p>
         <div className={styles.line}></div>
         <NavLinks classname="drawer" onClick={closeDrawerHandler}></NavLinks>
-
-        {/* <div className={styles.line}></div> */}
         <div className={styles.auth_container_drawer}>
-          <AuthLinks isDrawer={true}></AuthLinks>
+          <AuthLinks
+            isDrawer={true}
+            closeDrawerHandle={closeDrawerHandler}
+          ></AuthLinks>
         </div>
       </SideDrawer>
       {drawerIsOpen && <Backdrop onClick={closeDrawerHandler}></Backdrop>}
