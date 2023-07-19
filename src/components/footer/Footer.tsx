@@ -1,10 +1,11 @@
 import React from "react";
-import styles from "./footer.module.css";
 
 const Footer = () => {
   return (
-    <div className={styles.container}>
-      <p className={styles.p}>&copy; 2023 CineTracker. All rights reserved.</p>
+    <div className="h-10 bg-myBlueLight w-full p-0 m-0 flex justify-center items-center">
+      <p className="text-white">
+        &copy; 2023 CineTracker. All rights reserved.
+      </p>
     </div>
   );
 };

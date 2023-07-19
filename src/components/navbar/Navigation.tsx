@@ -45,14 +45,15 @@ const Navigation: React.FC = () => {
         <div className={styles.menu_btn}>
           <MenuIcon
             onClick={openDrawerHandler}
-            style={{ width: "2.5rem", height: "2.5rem", color: "#ffdb10" }}
+            style={{ width: "2.5rem", height: "2.5rem" }}
+            className="text-yellow-500 hover:text-yellow-600"
           ></MenuIcon>
         </div>
       </MainHeader>
 
       <SideDrawer show={drawerIsOpen}>
         <DisabledByDefaultRoundedIcon
-          className={styles.disabled_btn}
+          className="absolute right-2 top-2 cursor-pointer text-yellow-500 hover:text-yellow-600 w-8 h-8"
           onClick={closeDrawerHandler}
         ></DisabledByDefaultRoundedIcon>
         <p className={`${styles.title_drawer} ${styles.title}`}>CineTracker</p>

@@ -1,26 +1,45 @@
 import React from "react";
-import styles from "./Card.module.css";
+import { CircularProgress } from "@mui/material";
 import Image from "next/image";
+import { StringLiteral } from "typescript";
 
 interface CardProps {
   posterPath: string;
+  title: string;
+  releaseDate: string;
+  voteAverage: number;
 }
 
 const Card: React.FC<CardProps> = (props) => {
+  const releasedYear = props.releaseDate.split("-")[0];
+  const ratedPercent = props.voteAverage * 10;
+
   const imageLoader = () => {
     return `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${props.posterPath}`;
   };
 
   return (
-    <div className={styles.container}>
+    <div className="m-2 rounded-lg flex flex-col w-[150px]">
       <Image
         loader={imageLoader}
         src="movie.png"
         alt="Picture of the author"
         width={150}
         height={230}
-        className={styles.img}
+        className="rounded-lg"
       />
+      <div className="self-end -mt-7 mr-1 relative inline-flex">
+        <CircularProgress
+          variant="determinate"
+          value={100}
+          className=" bg-myBlueDark rounded-full text-yellow-500"
+        />
+        <div className="text-yellow-500 text-xs absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
+          {`${ratedPercent}%`}
+        </div>
+      </div>
+      <h3 className=" text-sm text-yellow-500 truncate ...">{props.title}</h3>
+      <h3 className=" text-sm text-yellow-500 ">{releasedYear}</h3>
     </div>
   );
 };
