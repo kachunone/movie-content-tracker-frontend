@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface AuthLinksProps {
   isDrawer?: boolean;
@@ -9,34 +9,32 @@ interface AuthLinksProps {
 }
 
 const AuthLinks: React.FC<AuthLinksProps> = (props) => {
-  const router = useRouter();
-
   return (
     <div
       className={props.isDrawer ? "flex flex-col gap-2" : "flex flex-row gap-2"}
     >
-      <button
-        className="bg-yellow-500 rounded p-2 hover:bg-yellow-600"
+      <Link
+        href={"/login"}
+        className="bg-yellow-500 rounded p-2 hover:bg-yellow-600 text-center"
         onClick={() => {
-          router.push("/login");
           if (props.closeDrawerHandle) {
             props.closeDrawerHandle();
           }
         }}
       >
         Login
-      </button>
-      <button
-        className="bg-yellow-500 rounded p-2 hover:bg-yellow-600"
+      </Link>
+      <Link
+        href={"/signup"}
+        className="bg-yellow-500 rounded p-2 hover:bg-yellow-600 text-center"
         onClick={() => {
-          router.push("/signup");
           if (props.closeDrawerHandle) {
             props.closeDrawerHandle();
           }
         }}
       >
         Sign up
-      </button>
+      </Link>
     </div>
   );
 };

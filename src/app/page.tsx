@@ -1,7 +1,7 @@
 import styles from "./page.module.css";
 import * as React from "react";
 import SearchBar from "@/components/searchbar/SearchBar";
-import CustomArrows from "@/components/slider/Slider";
+import MoviesSlider from "@/components/slider/MoviesSlider";
 
 export default function Home() {
   return (
@@ -9,13 +9,13 @@ export default function Home() {
       <div className={styles.searchBar_container}>
         <SearchBar></SearchBar>
       </div>
-      <CustomArrows
+      <MoviesSlider
         listType="now_playing"
         listTitle="Now Playing"
-      ></CustomArrows>
-      <CustomArrows listType="popular" listTitle="Popular"></CustomArrows>
-      <CustomArrows listType="top_rated" listTitle="Top Rated"></CustomArrows>
-      <CustomArrows listType="upcoming" listTitle="Upcoming"></CustomArrows>
+      ></MoviesSlider>
+      <MoviesSlider listType="popular" listTitle="Popular"></MoviesSlider>
+      <MoviesSlider listType="top_rated" listTitle="Top Rated"></MoviesSlider>
+      <MoviesSlider listType="upcoming" listTitle="Upcoming"></MoviesSlider>
     </div>
   );
 }

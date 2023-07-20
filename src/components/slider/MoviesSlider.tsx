@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Card from "../card/Card";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { CircularProgress } from "@mui/material";
 import useSWR from "swr";
 
 interface Movie {
@@ -17,12 +18,12 @@ interface Movie {
   vote_average: number;
 }
 
-interface CustomArrowsProps {
+interface MoviesSliderProps {
   listType: "now_playing" | "popular" | "top_rated" | "upcoming";
   listTitle: "Now Playing" | "Popular" | "Top Rated" | "Upcoming";
 }
 
-const CustomArrows: React.FC<CustomArrowsProps> = (props) => {
+const MoviesSlider: React.FC<MoviesSliderProps> = (props) => {
   const slider = React.useRef<Slider | null>(null);
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
   const moviesAPI = process.env.NEXT_PUBLIC_MOVIES_API_KEY;
@@ -57,40 +58,47 @@ const CustomArrows: React.FC<CustomArrowsProps> = (props) => {
 
   return (
     <React.Fragment>
-      {!isLoading && (
-        <div className="flex flex-col items-center justify-center p-6">
-          <h6 className="text-yellow-500 text-2xl mb-0 font-semibold">
-            {props.listTitle}
-          </h6>
-          <div className="flex justify-center items-center h-70 w-full ">
-            <KeyboardArrowLeftIcon
-              style={{
-                width: "3rem",
-                height: "3rem",
-              }}
-              className="text-yellow-500 hover:text-yellow-600 cursor-pointer"
-              onClick={() => slider?.current?.slickPrev()}
-            >
-              Prev
-            </KeyboardArrowLeftIcon>
-            <Slider ref={slider} {...settings} className="w-[65vw]">
+      {/* {!isLoading && ( */}
+      <div className="flex flex-col items-center justify-center p-6">
+        <h6 className="text-yellow-500 text-2xl mb-2 font-semibold">
+          {props.listTitle}
+        </h6>
+        <div className="flex justify-center items-center h-70 w-full ">
+          <KeyboardArrowLeftIcon
+            style={{
+              width: "3rem",
+              height: "3rem",
+            }}
+            className="text-yellow-500 hover:text-yellow-600 cursor-pointer"
+            onClick={() => slider?.current?.slickPrev()}
+          >
+            Prev
+          </KeyboardArrowLeftIcon>
+          {isLoading && (
+            <div className="w-[65vw] h-[280px] flex justify-center items-center">
+              <CircularProgress style={{ color: "yellow" }} />
+            </div>
+          )}
+          {!isLoading && (
+            <Slider ref={slider} {...settings} className="w-[65vw] ">
               {MoviesList}
             </Slider>
-            <KeyboardArrowRightIcon
-              onClick={() => slider?.current?.slickNext()}
-              style={{
-                width: "3rem",
-                height: "3rem",
-              }}
-              className="text-yellow-500 hover:text-yellow-600 cursor-pointer"
-            >
-              Next
-            </KeyboardArrowRightIcon>
-          </div>
+          )}
+          <KeyboardArrowRightIcon
+            onClick={() => slider?.current?.slickNext()}
+            style={{
+              width: "3rem",
+              height: "3rem",
+            }}
+            className="text-yellow-500 hover:text-yellow-600 cursor-pointer"
+          >
+            Next
+          </KeyboardArrowRightIcon>
         </div>
-      )}
+      </div>
+      {/* )} */}
     </React.Fragment>
   );
 };
 
-export default CustomArrows;
+export default MoviesSlider;

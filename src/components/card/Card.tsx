@@ -1,7 +1,8 @@
+"use client";
+
 import React from "react";
 import { CircularProgress } from "@mui/material";
 import Image from "next/image";
-import { StringLiteral } from "typescript";
 
 interface CardProps {
   posterPath: string;
@@ -19,14 +20,16 @@ const Card: React.FC<CardProps> = (props) => {
   };
 
   return (
-    <div className="m-2 rounded-lg flex flex-col w-[150px]">
+    <div className=" group mr-4 rounded-lg flex flex-col w-[150px] h-[280px] cursor-pointer">
       <Image
         loader={imageLoader}
-        src="movie.png"
+        src="yellow.jpg"
         alt="Picture of the author"
         width={150}
         height={230}
         className="rounded-lg"
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+        placeholder="blur"
       />
       <div className="self-end -mt-7 mr-1 relative inline-flex">
         <CircularProgress
@@ -38,8 +41,12 @@ const Card: React.FC<CardProps> = (props) => {
           {`${ratedPercent}%`}
         </div>
       </div>
-      <h3 className=" text-sm text-yellow-500 truncate ...">{props.title}</h3>
-      <h3 className=" text-sm text-yellow-500 ">{releasedYear}</h3>
+      <h3 className="group-hover:text-white text-sm text-yellow-500 truncate ...">
+        {props.title}
+      </h3>
+      <h3 className="group-hover:text-white text-sm text-yellow-500 ">
+        {releasedYear}
+      </h3>
     </div>
   );
 };
