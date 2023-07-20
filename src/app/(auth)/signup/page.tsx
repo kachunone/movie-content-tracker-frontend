@@ -24,10 +24,10 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen mt-16 bg-myBlueLight flex justify-center">
+    <div className="min-h-screen bg-myBlueLight flex justify-center">
       <form className="flex flex-col items-center bg-myBlueDark rounded-2xl p-7 h-[500px] mt-20">
         <h2 className="text-yellow-500 m-4 text-2xl mb-20 font-semibold">
-          Create account
+          Create an account
         </h2>
         <input
           type="text"

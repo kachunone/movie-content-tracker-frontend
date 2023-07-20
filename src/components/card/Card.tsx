@@ -1,10 +1,10 @@
-"use client";
-
 import React from "react";
 import { CircularProgress } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 interface CardProps {
+  id: number;
   posterPath: string;
   title: string;
   releaseDate: string;
@@ -15,15 +15,13 @@ const Card: React.FC<CardProps> = (props) => {
   const releasedYear = props.releaseDate.split("-")[0];
   const ratedPercent = props.voteAverage * 10;
 
-  const imageLoader = () => {
-    return `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${props.posterPath}`;
-  };
-
   return (
-    <div className=" group mr-4 rounded-lg flex flex-col w-[150px] h-[280px] cursor-pointer">
+    <Link
+      href={`/movies/${props.id}`}
+      className=" group mr-4 rounded-lg flex flex-col w-[150px] h-[280px] cursor-pointer"
+    >
       <Image
-        loader={imageLoader}
-        src="yellow.jpg"
+        src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${props.posterPath}`}
         alt="Picture of the author"
         width={150}
         height={230}
@@ -47,7 +45,7 @@ const Card: React.FC<CardProps> = (props) => {
       <h3 className="group-hover:text-white text-sm text-yellow-500 ">
         {releasedYear}
       </h3>
-    </div>
+    </Link>
   );
 };
 

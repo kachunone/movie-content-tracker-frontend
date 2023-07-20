@@ -36,6 +36,7 @@ const MoviesSlider: React.FC<MoviesSliderProps> = (props) => {
       return (
         <Card
           key={item.id}
+          id={item.id}
           posterPath={item.poster_path}
           title={item.title}
           releaseDate={item.release_date}

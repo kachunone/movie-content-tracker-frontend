@@ -18,14 +18,14 @@ const NavLinks: React.FC<NavLinksProps> = (props) => {
         className={`${styles.nav_links} ${className}`}
         onClick={onClickFunc}
       >
-        Home
+        Discover
       </Link>
       <Link
-        href="/movies"
+        href="/about"
         className={`${styles.nav_links} ${className}`}
         onClick={onClickFunc}
       >
-        Movies
+        About
       </Link>
     </div>
   );
