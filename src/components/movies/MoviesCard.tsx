@@ -33,7 +33,8 @@ const MoviesCard: React.FC<MoviesCardProps> = (props) => {
         <CircularProgress
           variant="determinate"
           value={ratedPercent}
-          className=" bg-myBlueDark rounded-full text-yellow-500"
+          className=" bg-myBlueDark rounded-full"
+          style={{ color: "#EAB306" }}
         />
         <div className="text-yellow-500 text-xs absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center">
           {`${ratedPercent}%`}

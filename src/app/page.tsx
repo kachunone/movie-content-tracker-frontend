@@ -10,18 +10,20 @@ export default function Home() {
       <div className={styles.searchBar_container}>
         <SearchBar></SearchBar>
       </div>
-      <Carousel>
-        <MoviesList listType="now_playing" listTitle="Now Playing"></MoviesList>
-      </Carousel>
-      <Carousel>
-        <MoviesList listType="popular" listTitle="Popular"></MoviesList>
-      </Carousel>
-      <Carousel>
-        <MoviesList listType="top_rated" listTitle="Top Rated"></MoviesList>
-      </Carousel>
-      <Carousel>
-        <MoviesList listType="upcoming" listTitle="Upcoming"></MoviesList>
-      </Carousel>
+      <div className=" mt-32">
+        <Carousel title="Now Playing">
+          <MoviesList listType="now_playing"></MoviesList>
+        </Carousel>
+        <Carousel title="Popular">
+          <MoviesList listType="popular"></MoviesList>
+        </Carousel>
+        <Carousel title="Top Rated">
+          <MoviesList listType="top_rated"></MoviesList>
+        </Carousel>
+        <Carousel title="Upcoming">
+          <MoviesList listType="upcoming"></MoviesList>
+        </Carousel>
+      </div>
     </div>
   );
 }

@@ -22,10 +22,10 @@ const CreditsCard: React.FC<CreditsCardProps> = (props) => {
         placeholder="blur"
       />
       <div className="w-[120px]">
-        <p className="group-hover:text-white text-sm text-yellow-500 truncate ...">
+        <p className="group-hover:text-white text-sm text-yellow-500 truncate ... transition-colors duration-300">
           {props.name}
         </p>
-        <p className="group-hover:text-white text-xs text-yellow-600 truncate ...">
+        <p className="group-hover:text-white text-xs text-yellow-600 truncate ... transition-colors duration-300">
           {props.character}
         </p>
       </div>

@@ -79,7 +79,7 @@ export default async function Page({ params }: { params: { id: number } }) {
   };
 
   return (
-    <div className="min-h-screen mt-16 bg-myBlueDark">
+    <div className="min-h-screen bg-myBlueDark">
       <div
         style={{
           backgroundImage: `url(${movieInfo.poster})`,
@@ -88,7 +88,7 @@ export default async function Page({ params }: { params: { id: number } }) {
         }}
       >
         <div
-          className={`relative flex flex-col items-center justify-center sm:flex-row bg-opacity-60 bg-black`}
+          className="mt-16 relative flex flex-col items-center justify-center sm:flex-row bg-opacity-60 bg-black"
           style={{ backdropFilter: "blur(20px)" }}
         >
           <Image
@@ -116,14 +116,14 @@ export default async function Page({ params }: { params: { id: number } }) {
               </p>
             </div>
             <div className="flex m-2 justify-center items-center">
-              <div className=" relative inline-grid">
+              <div className="group relative inline-grid cursor-pointer">
                 <CircularProgress
                   variant="determinate"
                   value={movieInfo.voteAvg}
-                  className=" bg-myBlueDark rounded-full"
+                  className=" bg-myBlueDark rounded-full group-hover:text-yellow-500 transition-colors duration-300"
                   size={"4rem"}
                 />
-                <div className="text-blue-500 font-bold text-lg absolute top-0 right-0 left-0 bottom-0 grid justify-center items-center hover:text-yellow-500 transform duration-300">
+                <div className="text-blue-500 font-bold text-lg absolute top-0 right-0 left-0 bottom-0 grid justify-center items-center group-hover:text-yellow-500 transform duration-300">
                   {`${movieInfo.voteAvg}%`}
                 </div>
               </div>
@@ -170,7 +170,7 @@ export default async function Page({ params }: { params: { id: number } }) {
           </div>
         </div>
       </div>
-      <Carousel>
+      <Carousel title="Credits">
         <CreditsList movieId={params.id}></CreditsList>
       </Carousel>
     </div>

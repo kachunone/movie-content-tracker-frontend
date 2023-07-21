@@ -11,7 +11,6 @@ interface Movie {
 
 interface MoviesListProps {
   listType: "now_playing" | "popular" | "top_rated" | "upcoming";
-  listTitle: "Now Playing" | "Popular" | "Top Rated" | "Upcoming";
 }
 
 async function getMovies(listType: string) {
