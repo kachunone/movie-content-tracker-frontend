@@ -1,7 +1,8 @@
 import styles from "./page.module.css";
 import * as React from "react";
 import SearchBar from "@/components/searchbar/SearchBar";
-import MoviesSlider from "@/components/slider/MoviesSlider";
+import Carousel from "@/components/carousel/Carousel";
+import MoviesList from "@/components/movies/MoviesList";
 
 export default function Home() {
   return (
@@ -9,13 +10,18 @@ export default function Home() {
       <div className={styles.searchBar_container}>
         <SearchBar></SearchBar>
       </div>
-      <MoviesSlider
-        listType="now_playing"
-        listTitle="Now Playing"
-      ></MoviesSlider>
-      <MoviesSlider listType="popular" listTitle="Popular"></MoviesSlider>
-      <MoviesSlider listType="top_rated" listTitle="Top Rated"></MoviesSlider>
-      <MoviesSlider listType="upcoming" listTitle="Upcoming"></MoviesSlider>
+      <Carousel>
+        <MoviesList listType="now_playing" listTitle="Now Playing"></MoviesList>
+      </Carousel>
+      <Carousel>
+        <MoviesList listType="popular" listTitle="Popular"></MoviesList>
+      </Carousel>
+      <Carousel>
+        <MoviesList listType="top_rated" listTitle="Top Rated"></MoviesList>
+      </Carousel>
+      <Carousel>
+        <MoviesList listType="upcoming" listTitle="Upcoming"></MoviesList>
+      </Carousel>
     </div>
   );
 }

@@ -53,7 +53,7 @@ const Navigation: React.FC = () => {
 
       <SideDrawer show={drawerIsOpen}>
         <DisabledByDefaultRoundedIcon
-          className="absolute right-2 top-2 cursor-pointer text-yellow-500 hover:text-yellow-600 w-8 h-8"
+          className="absolute right-2 top-2 cursor-pointer text-yellow-500 hover:text-yellow-600 w-8 h-8 text-center transition-colors duration-300"
           onClick={closeDrawerHandler}
         ></DisabledByDefaultRoundedIcon>
         <p className={`${styles.title_drawer} ${styles.title}`}>CineTracker</p>

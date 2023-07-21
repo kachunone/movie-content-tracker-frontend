@@ -1,6 +1,13 @@
-import React from "react";
+import React, { Children } from "react";
 import Image from "next/image";
 import { CircularProgress } from "@mui/material";
+
+import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
+import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+
+import Carousel from "@/components/carousel/Carousel"; //client com
+import CreditsList from "@/components/credits/CreditsList"; //server com
 
 function formatCurrency(number: number): string {
   return number.toLocaleString("en-US", {
@@ -66,78 +73,106 @@ export default async function Page({ params }: { params: { id: number } }) {
     tagline: movie["tagline"],
     overview: movie["overview"],
     status: movie["status"],
-    originalLang: movie["spoken_languages"][0]?.name || "English",
+    originalLang: movie["spoken_languages"][0]?.english_name || "Unknown",
     budget: movie["budget"] ? formatCurrency(movie["budget"]) : "N/A",
     revenue: movie["revenue"] ? formatCurrency(movie["revenue"]) : "N/A",
   };
 
   return (
     <div className="min-h-screen mt-16 bg-myBlueDark">
-      <div className=" flex flex-col bg-myBlueLight items-center justify-center sm:flex-row ">
-        <Image
-          src={movieInfo.poster}
-          alt="Picture of the author"
-          width={300}
-          height={300}
-          className="rounded-lg ml-6"
-          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
-          placeholder="blur"
-          style={{ margin: "2rem" }}
-        />
-        <div className=" h-full flex flex-col justify-center items-center text-center text-yellow-400 sm:items-start sm:text-left">
-          <div className="m-2">
-            <h5 className="text-2xl font-bold">
-              {movieInfo.title}{" "}
-              <span className=" text-yellow-600">{movieInfo.releaseYear}</span>
-            </h5>
-            <p className=" text-yellow-600">
-              {movieInfo.releaseDate} <span className=" font-extrabold">·</span>{" "}
-              {movieInfo.genres} <span className=" font-extrabold">·</span>{" "}
-              {movieInfo.runtime}
-            </p>
-          </div>
-          <div className="flex m-2">
-            <div className=" relative inline-grid">
-              <CircularProgress
-                variant="determinate"
-                value={movieInfo.voteAvg}
-                className=" bg-myBlueDark rounded-full"
-                style={{ color: "#FFDB10", width: "4rem", height: "4rem" }}
-              />
-              <div className="text-yellow-500 font-bold text-lg absolute top-0 right-0 left-0 bottom-0 grid justify-center items-center">
-                {`${movieInfo.voteAvg}%`}
+      <div
+        style={{
+          backgroundImage: `url(${movieInfo.poster})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div
+          className={`relative flex flex-col items-center justify-center sm:flex-row bg-opacity-60 bg-black`}
+          style={{ backdropFilter: "blur(20px)" }}
+        >
+          <Image
+            src={movieInfo.poster}
+            alt="Picture of the author"
+            width={300}
+            height={300}
+            className="rounded-lg ml-6"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+            placeholder="blur"
+            style={{ margin: "2rem" }}
+          />
+          <div className=" h-full flex flex-col justify-center items-center text-center text-yellow-400 sm:items-start sm:text-left">
+            <div className="m-2">
+              <h5 className="text-2xl font-bold">
+                {movieInfo.title}{" "}
+                <span className=" text-yellow-600">
+                  {movieInfo.releaseYear}
+                </span>
+              </h5>
+              <p className=" text-yellow-600">
+                {movieInfo.releaseDate}{" "}
+                <span className=" font-extrabold">·</span> {movieInfo.genres}{" "}
+                <span className=" font-extrabold">·</span> {movieInfo.runtime}
+              </p>
+            </div>
+            <div className="flex m-2 justify-center items-center">
+              <div className=" relative inline-grid">
+                <CircularProgress
+                  variant="determinate"
+                  value={movieInfo.voteAvg}
+                  className=" bg-myBlueDark rounded-full"
+                  size={"4rem"}
+                />
+                <div className="text-blue-500 font-bold text-lg absolute top-0 right-0 left-0 bottom-0 grid justify-center items-center hover:text-yellow-500 transform duration-300">
+                  {`${movieInfo.voteAvg}%`}
+                </div>
               </div>
+              <div className="flex justify-center items-start flex-col m-2">
+                <p className=" leading-4 font-semibold">
+                  User <br />
+                  Score
+                </p>
+              </div>
+              <BookmarkAddIcon
+                className="ml-3 hover:text-yellow-700 cursor-pointer bg-myBlueDark p-2 rounded-full transition-colors duration-300"
+                style={{ width: "2.5rem", height: "2.5rem" }}
+              ></BookmarkAddIcon>
+              <PlayArrowIcon
+                className="ml-3 hover:text-yellow-700 cursor-pointer bg-myBlueDark p-2 rounded-full transition-colors duration-300"
+                style={{ width: "2.5rem", height: "2.5rem" }}
+              ></PlayArrowIcon>
             </div>
-            <div className="flex justify-center items-start flex-col m-2">
-              <p className=" leading-4 font-semibold">User</p>
-              <p className=" leading-4 font-semibold">Score</p>
+            <p className="m-2 text-yellow-600 italic">{movieInfo.tagline}</p>
+            <div className="m-2">
+              <p className="mb-1 font-semibold">Overview</p>
+              <p className="leading-4 text-sm max-w-3xl">
+                {movieInfo.overview}
+              </p>
             </div>
-          </div>
-          <p className="m-2 text-yellow-600 italic">{movieInfo.tagline}</p>
-          <div className="m-2">
-            <p className="mb-1 font-semibold">Overview</p>
-            <p className="leading-4 text-sm max-w-3xl">{movieInfo.overview}</p>
-          </div>
-          <div className="m-2 grid grid-cols-2 gap-6 text-left sm:mb-3 mb-6">
-            <div>
-              <p className="font-semibold">Status</p>
-              <p className="text-yellow-600">{movieInfo.status}</p>
-            </div>
-            <div>
-              <p className="font-semibold">Original Language</p>
-              <p className="text-yellow-600">{movieInfo.originalLang}</p>
-            </div>
-            <div>
-              <p className="font-semibold">Budget</p>
-              <p className="text-yellow-600">{movieInfo.budget}</p>
-            </div>
-            <div>
-              <p className="font-semibold">Revenue</p>
-              <p className="text-yellow-600">{movieInfo.revenue}</p>
+            <div className="m-2 grid grid-cols-2 gap-6 text-left sm:mb-3 mb-6">
+              <div>
+                <p className="font-semibold">Status</p>
+                <p className="text-yellow-600">{movieInfo.status}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Original Language</p>
+                <p className="text-yellow-600">{movieInfo.originalLang}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Budget</p>
+                <p className="text-yellow-600">{movieInfo.budget}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Revenue</p>
+                <p className="text-yellow-600">{movieInfo.revenue}</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <Carousel>
+        <CreditsList movieId={params.id}></CreditsList>
+      </Carousel>
     </div>
   );
 }

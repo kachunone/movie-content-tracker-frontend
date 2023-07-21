@@ -16,7 +16,7 @@ const SearchBar: React.FC = () => {
           width: "2.5rem",
           height: "2.5rem",
         }}
-        className="bg-yellow-500 rounded-md p-1 cursor-pointer mr-1 hover:bg-yellow-600"
+        className="bg-yellow-500 rounded-md p-1 cursor-pointer mr-1 hover:bg-yellow-700 transition-colors duration-300"
         onClick={() => router.push("/search")}
       ></SearchOutlinedIcon>
     </div>

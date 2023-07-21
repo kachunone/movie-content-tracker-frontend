@@ -15,7 +15,7 @@ const AuthLinks: React.FC<AuthLinksProps> = (props) => {
     >
       <Link
         href={"/login"}
-        className="bg-yellow-500 rounded p-2 hover:bg-yellow-600 text-center"
+        className="bg-yellow-500 rounded p-2 hover:bg-yellow-700 text-center transition-colors duration-300 "
         onClick={() => {
           if (props.closeDrawerHandle) {
             props.closeDrawerHandle();
@@ -26,7 +26,7 @@ const AuthLinks: React.FC<AuthLinksProps> = (props) => {
       </Link>
       <Link
         href={"/signup"}
-        className="bg-yellow-500 rounded p-2 hover:bg-yellow-600 text-center"
+        className="bg-yellow-500 rounded p-2 hover:bg-yellow-700 text-center transition-colors duration-300"
         onClick={() => {
           if (props.closeDrawerHandle) {
             props.closeDrawerHandle();
