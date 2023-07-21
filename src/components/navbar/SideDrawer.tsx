@@ -22,7 +22,9 @@ const SideDrawer: React.FC<SideDrawerProps> = (props: SideDrawerProps) => {
       mountOnEnter
       unmountOnExit
     >
-      <aside className={styles.side_drawer}>{props.children}</aside>
+      <aside className="fixed left-0 top-0 h-screen w-[40%] z-50 bg-myBlueDark flex flex-col">
+        {props.children}
+      </aside>
     </CSSTransition>
   );
 };

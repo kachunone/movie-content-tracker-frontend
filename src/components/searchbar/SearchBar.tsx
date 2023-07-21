@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import styles from "./SearchBar.module.css";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { useRouter } from "next/navigation";
 
@@ -9,8 +8,11 @@ const SearchBar: React.FC = () => {
   const router = useRouter();
 
   return (
-    <div className={styles.container}>
-      <input className={styles.input} placeholder="Search for a movie"></input>
+    <div className="bg-myBlueDark h-12 w-[90vw] max-w-md flex items-center rounded-md">
+      <input
+        className="h-full bg-transparent text-gray-400 text-base border-none px-2 w-full rounded-sm mr-1 outline-none"
+        placeholder="Search for a movie"
+      ></input>
       <SearchOutlinedIcon
         style={{
           width: "2.5rem",

@@ -1,29 +1,29 @@
 import React from "react";
-import styles from "./NavLinks.module.css";
 import Link from "next/link";
 
 interface NavLinksProps {
-  classname?: string;
+  isDrawer?: boolean;
   onClick?: () => void;
 }
 
 const NavLinks: React.FC<NavLinksProps> = (props) => {
-  const className = props.classname === "drawer" ? styles.drawer : undefined;
-  const onClickFunc = props.classname === "drawer" ? props.onClick : undefined;
-
   return (
-    <div className={styles.container}>
+    <div
+      className={`h-full text-white no-underline overflow-auto scrollbar-none ${
+        props.isDrawer ? "flex flex-col items-center" : ""
+      }`}
+    >
       <Link
         href="/"
-        className={`${styles.nav_links} ${className}`}
-        onClick={onClickFunc}
+        className="m-2 hover:text-yellow-500 transition-colors duration-300"
+        onClick={props.onClick}
       >
         Discover
       </Link>
       <Link
         href="/about"
-        className={`${styles.nav_links} ${className}`}
-        onClick={onClickFunc}
+        className="m-2 hover:text-yellow-500 transition-colors duration-300"
+        onClick={props.onClick}
       >
         About
       </Link>

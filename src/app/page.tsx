@@ -1,4 +1,3 @@
-import styles from "./page.module.css";
 import * as React from "react";
 import SearchBar from "@/components/searchbar/SearchBar";
 import Carousel from "@/components/carousel/Carousel";
@@ -6,8 +5,8 @@ import MoviesList from "@/components/movies/MoviesList";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <div className={styles.searchBar_container}>
+    <div className="bg-myBlueDark flex flex-col items-center w-full min-h-screen">
+      <div className="bg-red-900 h-16 flex items-center justify-center w-full fixed top-16 left-0 z-40">
         <SearchBar></SearchBar>
       </div>
       <div className=" mt-32">
