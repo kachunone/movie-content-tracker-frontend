@@ -1,5 +1,5 @@
 import React, { Children } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { CircularProgress } from "@mui/material";
 
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
@@ -8,6 +8,8 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 import Carousel from "@/components/carousel/Carousel"; //client com
 import CreditsList from "@/components/credits/CreditsList"; //server com
+
+import NoneImage from "../../../../public/peakpx.jpg";
 
 function formatCurrency(number: number): string {
   return number.toLocaleString("en-US", {
@@ -24,7 +26,7 @@ function formatRuntime(runtime: number): string {
 }
 
 interface MovieInfo {
-  poster: string;
+  poster: string | StaticImageData;
   title: string;
   releaseDate: string;
   genres: string;
@@ -62,7 +64,10 @@ export default async function Page({ params }: { params: { id: number } }) {
   const movie = await getMovie(params.id);
 
   const movieInfo: MovieInfo = {
-    poster: `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${movie["poster_path"]}`,
+    poster:
+      movie["poster_path"] !== null
+        ? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${movie["poster_path"]}`
+        : NoneImage,
     title: movie["original_title"],
     releaseDate: movie["release_date"].split("-").reverse().join("/"),
     genres: movie["genres"].map((genre: Genre) => genre.name).join(", "),

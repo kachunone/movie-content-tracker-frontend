@@ -1,5 +1,6 @@
 import React from "react";
 import MoviesCard from "./MoviesCard";
+import MovieBar from "./MovieBar";
 
 interface Movie {
   id: number;
@@ -7,17 +8,23 @@ interface Movie {
   title: string;
   release_date: string;
   vote_average: number;
+  overview: string;
 }
 
 interface MoviesListProps {
-  listType: "now_playing" | "popular" | "top_rated" | "upcoming";
+  listType: "now_playing" | "popular" | "top_rated" | "upcoming" | "search";
+  params?: string;
 }
 
-async function getMovies(listType: string) {
+async function getMovies(listType: string, params?: string) {
   const moviesAPI = process.env.NEXT_PUBLIC_MOVIES_API_KEY;
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${listType}?api_key=${moviesAPI}`
-  );
+
+  const url =
+    listType !== "search"
+      ? `https://api.themoviedb.org/3/movie/${listType}?api_key=${moviesAPI}`
+      : `https://api.themoviedb.org/3/search/movie?query=${params}&api_key=${moviesAPI}`;
+
+  const res = await fetch(url);
 
   if (!res.ok) {
     throw new Error("Failed to fetch movies");
@@ -27,9 +34,9 @@ async function getMovies(listType: string) {
 }
 
 export default async function MoviesList(props: MoviesListProps) {
-  const movies = await getMovies(props.listType);
+  const movies = await getMovies(props.listType, props.params);
   const moviesList = movies.results.map((item: Movie) => {
-    return (
+    return props.listType !== "search" ? (
       <MoviesCard
         key={item.id}
         id={item.id}
@@ -38,6 +45,16 @@ export default async function MoviesList(props: MoviesListProps) {
         releaseDate={item.release_date}
         voteAverage={item.vote_average}
       ></MoviesCard>
+    ) : (
+      <MovieBar
+        key={item.id}
+        id={item.id}
+        posterPath={item.poster_path}
+        title={item.title}
+        releaseDate={item.release_date}
+        voteAverage={item.vote_average}
+        overview={item.overview}
+      ></MovieBar>
     );
   });
 

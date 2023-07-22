@@ -2,6 +2,7 @@ import React from "react";
 import { CircularProgress } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import NoneImage from "../../../public/peakpx.jpg";
 
 interface MoviesCardProps {
   id: number;
@@ -13,7 +14,12 @@ interface MoviesCardProps {
 
 const MoviesCard: React.FC<MoviesCardProps> = (props) => {
   const releasedYear = props.releaseDate.split("-")[0];
-  const ratedPercent = props.voteAverage * 10;
+  const ratedPercent = Math.floor(props.voteAverage * 10);
+
+  const posterPath =
+    props.posterPath !== null
+      ? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${props.posterPath}`
+      : NoneImage;
 
   return (
     <Link
@@ -21,7 +27,7 @@ const MoviesCard: React.FC<MoviesCardProps> = (props) => {
       className=" group mr-4 rounded-lg flex flex-col w-full h-full cursor-pointer outline-none mb-4"
     >
       <Image
-        src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${props.posterPath}`}
+        src={posterPath}
         alt="Picture of the author"
         width={150}
         height={225}
