@@ -35,7 +35,16 @@ async function getMovies(listType: string, params?: string) {
 
 export default async function MoviesList(props: MoviesListProps) {
   const movies = await getMovies(props.listType, props.params);
-  const moviesList = movies.results.map((item: Movie) => {
+
+  if (movies.results.length === 0) {
+    return (
+      <h6 className="text-yellow-600 self-center bg-black rounded-md p-2 bg-opacity-30 text-4xl">
+        Sorry, no movie found!
+      </h6>
+    );
+  }
+
+  const moviesList: [] = movies.results.map((item: Movie) => {
     return props.listType !== "search" ? (
       <MoviesCard
         key={item.id}

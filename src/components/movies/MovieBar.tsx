@@ -37,7 +37,7 @@ const MovieBar: React.FC<MovieBarProps> = (props) => {
         placeholder="blur"
       />
 
-      <div className="flex flex-col w-full h-full p-4">
+      <div className="flex flex-col w-full h-full p-3">
         <div className="text-yellow-500">
           <p className="line-clamp-1 font-semibold hover:text-white transition-colors duration-300">
             {props.title}
@@ -56,9 +56,7 @@ const MovieBar: React.FC<MovieBarProps> = (props) => {
             <div className="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center text-yellow-500 text-xs">{`${ratedPercent}%`}</div>
           </div>
         </div>
-        <div className="line-clamp-4">
-          <p className="text-yellow-500">{props.overview}</p>
-        </div>
+        <p className="text-yellow-500 line-clamp-2">{props.overview}</p>
       </div>
     </Link>
   );
