@@ -2,11 +2,11 @@ import React from "react";
 import SearchBar from "@/components/searchbar/SearchBar";
 import MoviesList from "@/components/movies/MoviesList";
 
-export default function Page({
-  searchParams,
-}: {
+interface PageProps {
   searchParams: { [key: string]: string };
-}) {
+}
+
+export default function Page(props: PageProps) {
   return (
     <div className="bg-myBlueDark flex flex-col items-center w-full min-h-screen">
       <div className="bg-myBlueLight h-16 flex items-center justify-center w-full fixed top-16 left-0 z-40">
@@ -18,7 +18,7 @@ export default function Page({
         </h6>
         <MoviesList
           listType="search"
-          params={searchParams.keyword}
+          params={props.searchParams.keyword}
         ></MoviesList>
       </div>
     </div>

@@ -6,7 +6,7 @@ interface NavLinksProps {
   onClick?: () => void;
 }
 
-const NavLinks: React.FC<NavLinksProps> = (props) => {
+export default function NavLinks(props: NavLinksProps) {
   return (
     <div
       className={`h-full text-yellow-500 no-underline overflow-auto scrollbar-none ${
@@ -29,6 +29,4 @@ const NavLinks: React.FC<NavLinksProps> = (props) => {
       </Link>
     </div>
   );
-};
-
-export default NavLinks;
+}

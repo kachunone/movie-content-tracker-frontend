@@ -12,7 +12,7 @@ interface MoviesCardProps {
   voteAverage: number;
 }
 
-const MoviesCard: React.FC<MoviesCardProps> = (props) => {
+export default function MoviesCard(props: MoviesCardProps) {
   const releasedYear = props.releaseDate.split("-")[0];
   const ratedPercent = Math.floor(props.voteAverage * 10);
 
@@ -56,6 +56,4 @@ const MoviesCard: React.FC<MoviesCardProps> = (props) => {
       </div>
     </Link>
   );
-};
-
-export default MoviesCard;
+}

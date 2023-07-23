@@ -8,7 +8,7 @@ interface SideDrawerProps {
   children?: React.ReactNode;
 }
 
-const SideDrawer: React.FC<SideDrawerProps> = (props: SideDrawerProps) => {
+export default function SideDrawer(props: SideDrawerProps) {
   return (
     <CSSTransition
       in={props.show}
@@ -27,6 +27,4 @@ const SideDrawer: React.FC<SideDrawerProps> = (props: SideDrawerProps) => {
       </aside>
     </CSSTransition>
   );
-};
-
-export default SideDrawer;
+}

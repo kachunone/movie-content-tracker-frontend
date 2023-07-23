@@ -8,8 +8,7 @@ interface CreditsCardProps {
   profilePath: string;
 }
 
-//del w-28
-const CreditsCard: React.FC<CreditsCardProps> = (props) => {
+export default function CreditsCard(props: CreditsCardProps) {
   return (
     <div className="group mr-1 ml-1 rounded-md flex flex-col cursor-pointer outline-none w-full h-full mb-4 bg-black bg-opacity-50 p-1">
       <Image
@@ -31,6 +30,4 @@ const CreditsCard: React.FC<CreditsCardProps> = (props) => {
       </div>
     </div>
   );
-};
-
-export default CreditsCard;
+}

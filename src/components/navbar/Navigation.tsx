@@ -11,7 +11,7 @@ import DisabledByDefaultRoundedIcon from "@mui/icons-material/DisabledByDefaultR
 import MenuIcon from "@mui/icons-material/Menu";
 import { MovieCreation } from "@mui/icons-material";
 
-const Navigation: React.FC = () => {
+export default function Navigation() {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const openDrawerHandler = () => {
@@ -69,6 +69,4 @@ const Navigation: React.FC = () => {
       {drawerIsOpen && <Backdrop onClick={closeDrawerHandler}></Backdrop>}
     </div>
   );
-};
-
-export default Navigation;
+}

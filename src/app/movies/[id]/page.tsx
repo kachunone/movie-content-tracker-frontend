@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { CircularProgress } from "@mui/material";
 

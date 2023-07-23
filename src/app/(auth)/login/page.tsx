@@ -9,7 +9,7 @@ interface AuthFormData {
   password: string;
 }
 
-const Login: React.FC = () => {
+export default function Login() {
   const [formData, setFormData] = useState<AuthFormData>({
     name: "",
     email: "",
@@ -54,6 +54,4 @@ const Login: React.FC = () => {
       </form>
     </div>
   );
-};
-
-export default Login;
+}

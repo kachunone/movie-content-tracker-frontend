@@ -13,7 +13,7 @@ interface MovieBarProps {
   overview: string;
 }
 
-const MovieBar: React.FC<MovieBarProps> = (props) => {
+export default function MovieBar(props: MovieBarProps) {
   const releasedYear = props.releaseDate.split("-").reverse().join("/");
   const ratedPercent = Math.floor(props.voteAverage * 10);
 
@@ -60,6 +60,4 @@ const MovieBar: React.FC<MovieBarProps> = (props) => {
       </div>
     </Link>
   );
-};
-
-export default MovieBar;
+}

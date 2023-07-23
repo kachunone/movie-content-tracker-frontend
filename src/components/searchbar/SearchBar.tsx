@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { useRouter } from "next/navigation";
 
-const SearchBar: React.FC = () => {
+export default function Searchbar() {
   const router = useRouter();
   const [keyword, setKeyword] = useState("");
 
@@ -40,6 +40,4 @@ const SearchBar: React.FC = () => {
       ></SearchOutlinedIcon>
     </div>
   );
-};
-
-export default SearchBar;
+}
