@@ -11,13 +11,13 @@ interface CreditsCardProps {
 //del w-28
 const CreditsCard: React.FC<CreditsCardProps> = (props) => {
   return (
-    <div className="group mr-1 ml-1 rounded-lg flex flex-col cursor-pointer outline-none w-full h-full mb-4">
+    <div className="group mr-1 ml-1 rounded-md flex flex-col cursor-pointer outline-none w-full h-full mb-4 bg-black bg-opacity-50 p-1">
       <Image
         src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${props.profilePath}`}
         alt="Picture of the author"
         width={120}
         height={180}
-        className="rounded-lg"
+        className=" rounded"
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
         placeholder="blur"
       />

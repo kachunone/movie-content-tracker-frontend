@@ -24,14 +24,14 @@ const MoviesCard: React.FC<MoviesCardProps> = (props) => {
   return (
     <Link
       href={`/movies/${props.id}`}
-      className=" group mr-4 rounded-lg flex flex-col w-full h-full cursor-pointer outline-none mb-4"
+      className=" group mr-4 rounded-md flex flex-col w-full h-full cursor-pointer outline-none mb-4 bg-black bg-opacity-50 p-1"
     >
       <Image
         src={posterPath}
         alt="Picture of the author"
         width={150}
         height={225}
-        className="rounded-lg w-auto h-auto"
+        className="rounded w-auto h-auto"
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
         placeholder="blur"
       />
