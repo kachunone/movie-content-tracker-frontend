@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "@/app/context/auth";
 
 // Define the shape of the form data
 interface AuthFormData {
@@ -11,6 +12,7 @@ interface AuthFormData {
 }
 
 export default function LoginForm() {
+  const { isLoggedIn, logout, login } = useContext(AuthContext);
   const router = useRouter();
   const [formData, setFormData] = useState<AuthFormData>({
     email: "",
@@ -62,6 +64,7 @@ export default function LoginForm() {
               console.log(token);
               setCookie("token", token.access_token);
               if (token.access_token) {
+                login();
                 router.refresh();
                 router.push("/about");
               }
