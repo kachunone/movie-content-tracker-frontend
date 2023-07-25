@@ -99,12 +99,12 @@ export default async function Page({ params }: { params: { id: number } }) {
           <Image
             src={movieInfo.poster}
             alt="Picture of the author"
-            width={300}
-            height={300}
+            width={150}
+            height={225}
+            style={{ margin: "2rem", width: "auto", height: "auto" }}
             className="rounded-lg ml-6"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
             placeholder="blur"
-            style={{ margin: "2rem" }}
           />
           <div className=" h-full flex flex-col justify-center items-center text-center text-yellow-400 sm:items-start sm:text-left">
             <div className="m-2">

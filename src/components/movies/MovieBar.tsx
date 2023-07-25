@@ -32,9 +32,11 @@ export default function MovieBar(props: MovieBarProps) {
         alt="Picture of the author"
         width={150}
         height={225}
+        style={{ width: "auto", height: "auto" }}
         className=" rounded-lg w-auto h-auto"
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
         placeholder="blur"
+        priority={true}
       />
 
       <div className="flex flex-col w-full h-full p-3">
