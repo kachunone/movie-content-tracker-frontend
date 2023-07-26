@@ -10,6 +10,7 @@ import Carousel from "@/components/carousel/Carousel"; //client com
 import CreditsList from "@/components/credits/CreditsList"; //server com
 
 import NoneImage from "../../../../public/peakpx.jpg";
+import MovieOptBtn from "@/components/movies/MovieOptbtn";
 
 function formatCurrency(number: number): string {
   return number.toLocaleString("en-US", {
@@ -138,10 +139,7 @@ export default async function Page({ params }: { params: { id: number } }) {
                   Score
                 </p>
               </div>
-              <BookmarkAddIcon
-                className="ml-3 hover:text-yellow-700 cursor-pointer bg-myBlueDark p-2 rounded-full transition-colors duration-300"
-                style={{ width: "2.5rem", height: "2.5rem" }}
-              ></BookmarkAddIcon>
+              <MovieOptBtn></MovieOptBtn>
               <PlayArrowIcon
                 className="ml-3 hover:text-yellow-700 cursor-pointer bg-myBlueDark p-2 rounded-full transition-colors duration-300"
                 style={{ width: "2.5rem", height: "2.5rem" }}

@@ -57,8 +57,20 @@ export default function SignUpForm() {
         />
         <button
           className="m-3 p-3 border-none rounded-lg w-72 bg-yellow-500"
-          onClick={() => {
-            router.push("/about");
+          onClick={async () => {
+            try {
+              const res = await fetch("http://localhost:3001/auth/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  name: formData.name,
+                  email: formData.email,
+                  password: formData.password,
+                }),
+              });
+            } catch {
+              console.log("fail");
+            }
           }}
         >
           Sign Up
