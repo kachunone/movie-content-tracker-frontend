@@ -9,16 +9,9 @@ import Backdrop from "./Backdrop";
 import { useState } from "react";
 import DisabledByDefaultRoundedIcon from "@mui/icons-material/DisabledByDefaultRounded";
 import MenuIcon from "@mui/icons-material/Menu";
-import { MovieCreation, Route } from "@mui/icons-material";
-import { AuthContext } from "@/app/context/auth";
-import { deleteCookie, setCookie } from "cookies-next";
-import { useRouter } from "next/navigation";
+import { MovieCreation } from "@mui/icons-material";
 export default function Navigation() {
-  const router = useRouter();
-  const { isLoggedIn, logout, login } = useContext(AuthContext);
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
-
-  console.log(isLoggedIn);
 
   const openDrawerHandler = () => {
     setDrawerIsOpen(true);
@@ -44,20 +37,7 @@ export default function Navigation() {
           {!drawerIsOpen && <NavLinks></NavLinks>}
         </div>
         <div className="hidden md:block">
-          {!drawerIsOpen && !isLoggedIn && <AuthLinks></AuthLinks>}
-          {isLoggedIn && (
-            <button
-              className="bg-yellow-500 rounded p-2 hover:bg-yellow-700 text-center transition-colors duration-300"
-              onClick={() => {
-                logout();
-                deleteCookie("token");
-                router.refresh();
-                router.replace("/");
-              }}
-            >
-              Logout
-            </button>
-          )}
+          {!drawerIsOpen && <AuthLinks></AuthLinks>}
         </div>
 
         <div className="md:hidden block absolute left-5">
@@ -80,25 +60,10 @@ export default function Navigation() {
         <div className="border-t-2 border-yellow-400 my-4 m-2"></div>
         <NavLinks isDrawer={true} onClick={closeDrawerHandler}></NavLinks>
         <div className="m-2">
-          {!isLoggedIn && (
-            <AuthLinks
-              isDrawer={true}
-              closeDrawerHandle={closeDrawerHandler}
-            ></AuthLinks>
-          )}
-          {isLoggedIn && (
-            <button
-              className="bg-yellow-500 rounded p-2 w-full hover:bg-yellow-700 text-center transition-colors duration-300"
-              onClick={() => {
-                logout();
-                deleteCookie("token");
-                router.refresh();
-                router.replace("/");
-              }}
-            >
-              Logout
-            </button>
-          )}
+          <AuthLinks
+            isDrawer={true}
+            closeDrawerHandle={closeDrawerHandler}
+          ></AuthLinks>
         </div>
       </SideDrawer>
       {drawerIsOpen && <Backdrop onClick={closeDrawerHandler}></Backdrop>}

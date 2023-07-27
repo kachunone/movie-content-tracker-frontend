@@ -8,7 +8,6 @@ async function getProfile(token?: string) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    cache: "no-store",
   });
 
   const profile = await res.json();
@@ -18,7 +17,6 @@ async function getProfile(token?: string) {
 export default async function About() {
   const cookieStore = cookies();
   const token = cookieStore.get("token");
-  console.log("login page called", token);
   const profile = await getProfile(token?.value);
 
   return (

@@ -1,14 +1,9 @@
 import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { CircularProgress } from "@mui/material";
-
-import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
-import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-
-import Carousel from "@/components/carousel/Carousel"; //client com
-import CreditsList from "@/components/credits/CreditsList"; //server com
-
+import Carousel from "@/components/carousel/Carousel";
+import CreditsList from "@/components/credits/CreditsList";
 import NoneImage from "../../../../public/peakpx.jpg";
 import MovieOptBtn from "@/components/movies/MovieOptbtn";
 
@@ -48,6 +43,15 @@ interface Genre {
   name: string;
 }
 
+interface MovieOptBtnProps {
+  movieId: number;
+  poster: string | StaticImageData;
+  title: string;
+  releaseDate: string;
+  overview: string;
+  mark: string;
+}
+
 async function getMovie(id: number) {
   const moviesAPI = process.env.NEXT_PUBLIC_MOVIES_API_KEY;
   const res = await fetch(
@@ -82,6 +86,15 @@ export default async function Page({ params }: { params: { id: number } }) {
     originalLang: movie["spoken_languages"][0]?.english_name || "Unknown",
     budget: movie["budget"] ? formatCurrency(movie["budget"]) : "N/A",
     revenue: movie["revenue"] ? formatCurrency(movie["revenue"]) : "N/A",
+  };
+
+  const btnInfo: MovieOptBtnProps = {
+    movieId: params.id,
+    poster: movieInfo.poster,
+    title: movieInfo.title,
+    releaseDate: movieInfo.releaseDate,
+    overview: movieInfo.overview,
+    mark: "watched",
   };
 
   return (
@@ -139,7 +152,7 @@ export default async function Page({ params }: { params: { id: number } }) {
                   Score
                 </p>
               </div>
-              <MovieOptBtn></MovieOptBtn>
+              <MovieOptBtn data={btnInfo}></MovieOptBtn>
               <PlayArrowIcon
                 className="ml-3 hover:text-yellow-700 cursor-pointer bg-myBlueDark p-2 rounded-full transition-colors duration-300"
                 style={{ width: "2.5rem", height: "2.5rem" }}

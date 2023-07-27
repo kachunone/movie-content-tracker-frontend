@@ -5,14 +5,13 @@ import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/app/context/auth";
 
-// Define the shape of the form data
 interface AuthFormData {
   email: string;
   password: string;
 }
 
 export default function LoginForm() {
-  const { isLoggedIn, logout, login } = useContext(AuthContext);
+  const { setUsername, login } = useContext(AuthContext);
   const router = useRouter();
   const [formData, setFormData] = useState<AuthFormData>({
     email: "",
@@ -20,10 +19,33 @@ export default function LoginForm() {
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // Extract the name and value of the input field from the event
     const { name, value } = event.target;
-    // Update the form data state with the new value for the appropriate field
     setFormData({ ...formData, [name]: value });
+  };
+
+  const submitBtnHandler = async () => {
+    try {
+      const res = await fetch("http://localhost:3001/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+      const response = await res.json();
+      if (response.message === "success") {
+        setCookie("token", response.access_token);
+        login();
+        setUsername(response.username);
+        router.refresh();
+        router.push("/about");
+      } else if (response.statusCode === 401) {
+        console.log(response.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -50,28 +72,7 @@ export default function LoginForm() {
         />
         <button
           className="m-3 p-3 border-none rounded-lg w-72 bg-yellow-500 bottom-0"
-          onClick={async () => {
-            try {
-              const res = await fetch("http://localhost:3001/auth/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  email: formData.email,
-                  password: formData.password,
-                }),
-              });
-              const token = await res.json();
-              console.log(token);
-              setCookie("token", token.access_token);
-              if (token.access_token) {
-                login();
-                router.refresh();
-                router.push("/about");
-              }
-            } catch {
-              console.log("fail");
-            }
-          }}
+          onClick={submitBtnHandler}
         >
           Submit
         </button>

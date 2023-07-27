@@ -19,10 +19,29 @@ export default function SignUpForm() {
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // Extract the name and value of the input field from the event
     const { name, value } = event.target;
-    // Update the form data state with the new value for the appropriate field
     setFormData({ ...formData, [name]: value });
+  };
+
+  const submitBtnHandler = async () => {
+    try {
+      const res = await fetch("http://localhost:3001/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+      const response = await res.json();
+      if (response.statusCode == 200) {
+        // router.refresh();
+        router.push("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -57,21 +76,7 @@ export default function SignUpForm() {
         />
         <button
           className="m-3 p-3 border-none rounded-lg w-72 bg-yellow-500"
-          onClick={async () => {
-            try {
-              const res = await fetch("http://localhost:3001/auth/signup", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  name: formData.name,
-                  email: formData.email,
-                  password: formData.password,
-                }),
-              });
-            } catch {
-              console.log("fail");
-            }
-          }}
+          onClick={submitBtnHandler}
         >
           Sign Up
         </button>
