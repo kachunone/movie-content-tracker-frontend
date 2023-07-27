@@ -30,7 +30,7 @@ async function getMovies(listType: string, params?: string) {
     throw new Error("Failed to fetch movies");
   }
 
-  return res.json();
+  return await res.json();
 }
 
 export default async function MoviesList(props: MoviesListProps) {

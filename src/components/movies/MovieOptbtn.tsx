@@ -6,6 +6,8 @@ import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import { getCookie } from "cookies-next";
 import Image, { StaticImageData } from "next/image";
+import { useRouter } from "next/navigation";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 
 interface MovieOptBtnProps {
   data: {
@@ -18,12 +20,14 @@ interface MovieOptBtnProps {
   };
 }
 
-async function addToList(props: MovieOptBtnProps, token?: string) {
+async function addToList(
+  props: MovieOptBtnProps,
+  router: AppRouterInstance,
+  token?: string
+) {
   if (!token) {
     console.log("no user");
     return;
-  } else {
-    console.log(token);
   }
 
   try {
@@ -42,22 +46,25 @@ async function addToList(props: MovieOptBtnProps, token?: string) {
         mark: props.data.mark,
       }),
     });
-    const movie = await res.json();
-    return movie;
+    const response = await res.json();
+    if (response.statusCode === 200) {
+      router.refresh();
+    }
+    return response;
   } catch (error) {
     console.log(error);
   }
 }
 
 export default function MovieOptBtn(props: MovieOptBtnProps) {
-  // const { isLoggedIn } = useContext(AuthContext);
+  const router = useRouter();
   const token = getCookie("token");
 
   return (
     <div>
       <div
-        onClick={() => {
-          addToList(props, token?.toString());
+        onClick={async () => {
+          await addToList(props, router, token?.toString());
         }}
       >
         <BookmarkAddIcon

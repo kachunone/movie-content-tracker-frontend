@@ -9,13 +9,17 @@ interface MovieBarProps {
   posterPath: string;
   title: string;
   releaseDate: string;
-  voteAverage: number;
+  voteAverage?: number;
   overview: string;
 }
 
 export default function MovieBar(props: MovieBarProps) {
   const releasedYear = props.releaseDate.split("-").reverse().join("/");
-  const ratedPercent = Math.floor(props.voteAverage * 10);
+
+  let ratedPercent = undefined;
+  if (props.voteAverage) {
+    ratedPercent = Math.floor(props.voteAverage * 10);
+  }
 
   const posterPath =
     props.posterPath !== null
@@ -49,13 +53,17 @@ export default function MovieBar(props: MovieBarProps) {
 
         <div className="flex p-3 pl-0">
           <div className="relative inline-flex">
-            <CircularProgress
-              variant="determinate"
-              value={ratedPercent}
-              className="bg-myBlueDark rounded-full "
-              style={{ color: "#EAB306", width: "3rem", height: "3rem" }}
-            />
-            <div className="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center text-yellow-500 text-xs">{`${ratedPercent}%`}</div>
+            {ratedPercent && (
+              <>
+                <CircularProgress
+                  variant="determinate"
+                  value={ratedPercent}
+                  className="bg-myBlueDark rounded-full "
+                  style={{ color: "#EAB306", width: "3rem", height: "3rem" }}
+                />
+                <div className="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center text-yellow-500 text-xs">{`${ratedPercent}%`}</div>
+              </>
+            )}
           </div>
         </div>
         <p className="text-yellow-500 line-clamp-2">{props.overview}</p>

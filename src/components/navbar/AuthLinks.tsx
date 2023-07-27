@@ -43,9 +43,11 @@ export default function AuthLinks(props: AuthLinksProps) {
         </>
       )}
       {isLoggedIn && (
-        <p className="text-white self-center m-2 text-xl">
-          {loggedInUser.toUpperCase()}
-        </p>
+        <Link href={"/watchlist"}>
+          <p className="text-white self-center m-2 text-xl">
+            {loggedInUser.toUpperCase()}
+          </p>
+        </Link>
       )}
       {isLoggedIn && (
         <button
