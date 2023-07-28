@@ -32,6 +32,7 @@ export default function LoginForm() {
           email: formData.email,
           password: formData.password,
         }),
+        cache: "no-store",
       });
       const response = await res.json();
       if (response.message === "success") {

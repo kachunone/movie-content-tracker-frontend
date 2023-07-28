@@ -18,7 +18,7 @@ async function getMovies(token?: string) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    cache: "no-store",
+    cache: "no-cache",
   });
 
   const response = await res.json();
@@ -32,8 +32,8 @@ export default async function WatchList() {
 
   if (movies.length === 0) {
     return (
-      <div className="h-screen min-h-screen mt-16 bg-red-900 text-white flex flex-col justify-center items-center text-4xl">
-        <h6 className="text-yellow-600 self-center bg-black rounded-md p-2 bg-opacity-30 text-4xl">
+      <div className="h-screen min-h-screen mt-16 bg-myBlueLight text-white flex flex-col items-center text-4xl">
+        <h6 className="text-yellow-600 self-center bg-black rounded-md p-2 bg-opacity-30 text-4xl mt-7">
           Sorry, no movie found!
         </h6>
       </div>
@@ -49,6 +49,7 @@ export default async function WatchList() {
         title={movie.title}
         releaseDate={movie.release_date}
         overview={movie.overview}
+        isWachList={true}
       ></MovieBar>
     );
   });

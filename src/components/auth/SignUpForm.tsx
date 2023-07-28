@@ -33,6 +33,7 @@ export default function SignUpForm() {
           email: formData.email,
           password: formData.password,
         }),
+        cache: "no-store",
       });
       const response = await res.json();
       if (response.statusCode == 200) {

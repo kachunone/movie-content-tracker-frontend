@@ -3,6 +3,7 @@ import { CircularProgress } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import NoneImage from "../../../public/peakpx.jpg";
+import MovieDeleteBtn from "./MovieDeleteBtn";
 
 interface MovieBarProps {
   id: number;
@@ -11,6 +12,7 @@ interface MovieBarProps {
   releaseDate: string;
   voteAverage?: number;
   overview: string;
+  isWachList?: boolean;
 }
 
 export default function MovieBar(props: MovieBarProps) {
@@ -27,10 +29,7 @@ export default function MovieBar(props: MovieBarProps) {
       : NoneImage;
 
   return (
-    <Link
-      href={`/movies/${props.id}`}
-      className=" h-48 w-full flex bg-black rounded-lg bg-opacity-40"
-    >
+    <div className=" h-48 w-full flex bg-black rounded-lg bg-opacity-40">
       <Image
         src={posterPath}
         alt="Picture of the author"
@@ -45,9 +44,12 @@ export default function MovieBar(props: MovieBarProps) {
 
       <div className="flex flex-col w-full h-full p-3">
         <div className="text-yellow-500">
-          <p className="line-clamp-1 font-semibold hover:text-white transition-colors duration-300">
+          <Link
+            className="line-clamp-1 font-semibold hover:text-white transition-colors duration-300"
+            href={`/movies/${props.id}`}
+          >
             {props.title}
-          </p>
+          </Link>
           <p className=" text-sm text-yellow-700">{releasedYear}</p>
         </div>
 
@@ -59,15 +61,22 @@ export default function MovieBar(props: MovieBarProps) {
                   variant="determinate"
                   value={ratedPercent}
                   className="bg-myBlueDark rounded-full "
-                  style={{ color: "#EAB306", width: "3rem", height: "3rem" }}
+                  style={{
+                    color: "#EAB306",
+                    width: "2.5rem",
+                    height: "2.5rem",
+                  }}
                 />
                 <div className="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center text-yellow-500 text-xs">{`${ratedPercent}%`}</div>
               </>
+            )}
+            {props.isWachList && (
+              <MovieDeleteBtn movieId={props.id}></MovieDeleteBtn>
             )}
           </div>
         </div>
         <p className="text-yellow-500 line-clamp-2">{props.overview}</p>
       </div>
-    </Link>
+    </div>
   );
 }
