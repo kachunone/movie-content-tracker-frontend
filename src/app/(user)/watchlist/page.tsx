@@ -12,14 +12,17 @@ interface Movie {
 }
 
 async function getMovies(token?: string) {
-  const res = await fetch("http://localhost:3001/user/movies", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    cache: "no-cache",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/movies`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-cache",
+    }
+  );
 
   const response = await res.json();
   return Array.isArray(response) ? response : [];

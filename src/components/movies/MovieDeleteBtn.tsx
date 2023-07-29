@@ -24,7 +24,7 @@ const deleteMovie = async (
 ) => {
   const token = getCookie("token");
   const res = await fetch(
-    `http://localhost:3001/user/delete-movie/${movieId}`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/delete-movie/${movieId}`,
     {
       method: "DELETE",
       headers: {

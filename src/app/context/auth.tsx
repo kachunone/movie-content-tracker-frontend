@@ -24,14 +24,17 @@ interface AuthContextProviderProps {
 }
 
 async function validateToken(token: string) {
-  const res = await fetch("http://localhost:3001/auth/validate-token", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/validate-token`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-store",
+    }
+  );
 
   return await res.json();
 }

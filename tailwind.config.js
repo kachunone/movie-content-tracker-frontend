@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         myBlueDark: "#1F2532",
         myBlueLight: "#354057",
+        myBlueDarker: "#081426",
       },
     },
   },

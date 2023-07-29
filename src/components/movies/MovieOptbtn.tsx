@@ -7,6 +7,7 @@ import { StaticImageData } from "next/image";
 import Modal from "@mui/material/Modal";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
+import { AuthContext } from "@/app/context/auth";
 
 const style = {
   position: "absolute" as "absolute",
@@ -49,22 +50,25 @@ async function addToList(
   }
 
   try {
-    const res = await fetch(`http://localhost:3001/user/add-movie`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        id: props.data.movieId,
-        poster_path: props.data.poster,
-        title: props.data.title,
-        release_date: props.data.releaseDate,
-        overview: props.data.overview,
-        mark: props.data.mark,
-      }),
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/add-movie`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          id: props.data.movieId,
+          poster_path: props.data.poster,
+          title: props.data.title,
+          release_date: props.data.releaseDate,
+          overview: props.data.overview,
+          mark: props.data.mark,
+        }),
+        cache: "no-store",
+      }
+    );
     const response = await res.json();
     let msg = { title: "Failure", message: "Movie may be added already" };
     if (response.statusCode === 200) {
@@ -81,6 +85,7 @@ async function addToList(
 
 export default function MovieOptBtn(props: MovieOptBtnProps) {
   const token = getCookie("token");
+  const { isLoggedIn } = useContext(AuthContext);
   const router = useRouter();
 
   const [open, setOpen] = React.useState(false);
@@ -92,6 +97,12 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
     <div>
       <div
         onClick={async () => {
+          if (!isLoggedIn) {
+            console.log("login status: ", isLoggedIn);
+            setPrompt({ title: "Failure", message: "Please log in first" });
+            handleOpen();
+            return;
+          }
           await addToList(
             props,
             handleOpen,
