@@ -62,7 +62,7 @@ export default async function WatchList() {
       <h6 className="text-yellow-500 text-2xl font-semibold self-center mt-5">
         Watch List
       </h6>
-      <div className="text-xl w-[50vw] mt-5 flex flex-col gap-3 mb-5">
+      <div className="text-xl w-[700px] max-w-[90vw] mt-5 flex flex-col gap-3 mb-5">
         {moviesList}
       </div>
     </div>

@@ -45,12 +45,12 @@ export default function MovieBar(props: MovieBarProps) {
       <div className="flex flex-col w-full h-full p-3">
         <div className="text-yellow-500">
           <Link
-            className="line-clamp-1 font-semibold hover:text-white transition-colors duration-300"
+            className="line-clamp-1 font-semibold hover:text-white transition-colors duration-300 text-base"
             href={`/movies/${props.id}`}
           >
             {props.title}
           </Link>
-          <p className=" text-sm text-yellow-700">{releasedYear}</p>
+          <p className=" text-sm text-yellow-600">{releasedYear}</p>
         </div>
 
         <div className="flex p-3 pl-0">
@@ -75,7 +75,7 @@ export default function MovieBar(props: MovieBarProps) {
             )}
           </div>
         </div>
-        <p className="text-yellow-500 line-clamp-2">{props.overview}</p>
+        <p className="text-yellow-600 line-clamp-3 text-sm">{props.overview}</p>
       </div>
     </div>
   );

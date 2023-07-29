@@ -11,7 +11,7 @@ export default function Carousel(props: CarouselProps) {
       <h6 className="text-yellow-500 text-2xl mb-2 font-semibold ">
         {props.title}
       </h6>
-      <div className="flex overflow-auto max-w-[70vw] h-full scrollbar-thin scrollbar-track-myBlueLight scrollbar-thumb-yellow-500 rounded-md">
+      <div className="flex overflow-auto w-[1000px] max-w-[85vw] h-full scrollbar-thin scrollbar-track-myBlueLight scrollbar-thumb-yellow-500 rounded-md">
         {props.children}
       </div>
     </div>

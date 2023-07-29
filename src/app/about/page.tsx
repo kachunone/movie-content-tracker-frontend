@@ -29,7 +29,7 @@ export default async function About() {
           <h1 className="text-4xl font-bold mb-4 text-center text-yellow-500">
             About Movie Content Tracker
           </h1>
-          <p className="mb-6 text-center text-yellow-700 text-lg">
+          <p className="mb-6 text-center text-yellow-600 text-lg">
             Welcome to Movie Content Tracker, your go-to app for organizing and
             managing your movie watchlist!
           </p>
@@ -38,16 +38,16 @@ export default async function About() {
               Features
             </h2>
             <ul className="list-disc list-inside">
-              <li className="text-yellow-700 mb-2 text-lg">
+              <li className="text-yellow-600 mb-2 text-lg">
                 Search and browse a vast collection of movies.
               </li>
-              <li className="text-yellow-700 mb-2 text-lg">
+              <li className="text-yellow-600 mb-2 text-lg">
                 Add movies to your personal watchlist for future reference.
               </li>
-              <li className="text-yellow-700 mb-2 text-lg">
-                Mark watched movies and keep track of what you've seen.
+              <li className="text-yellow-600 mb-2 text-lg">
+                Mark watched movies and keep track of what you&apos; ve seen.
               </li>
-              <li className="text-yellow-700 mb-2 text-lg">
+              <li className="text-yellow-600 mb-2 text-lg">
                 Customize your watchlist with notes and ratings for each movie.
               </li>
             </ul>
@@ -56,7 +56,7 @@ export default async function About() {
             <h2 className="text-2xl font-bold mb-2 text-yellow-500">
               Why Use Movie Content Tracker?
             </h2>
-            <p className="text-yellow-700 text-lg">
+            <p className="text-yellow-600 text-lg">
               With Movie Content Tracker, you can easily keep track of movies
               you want to watch or have already watched. Say goodbye to
               forgetting movie recommendations and hello to an organized
@@ -67,7 +67,7 @@ export default async function About() {
             <h2 className="text-2xl font-bold mb-2 text-yellow-500">
               Get Started
             </h2>
-            <p className="text-yellow-700 text-lg">
+            <p className="text-yellow-600 text-lg">
               To access personalized features, sign up for a free account. It
               only takes a minute!
             </p>
@@ -76,7 +76,7 @@ export default async function About() {
             <h2 className="text-2xl font-bold mb-2 text-yellow-500">
               Contact me
             </h2>
-            <p className="text-yellow-700 text-lg">
+            <p className="text-yellow-600 text-lg">
               If you have any questions or feedback, feel free to contact me.
             </p>
           </div>

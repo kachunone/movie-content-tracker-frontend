@@ -44,14 +44,15 @@ export default function AuthLinks(props: AuthLinksProps) {
       )}
       {isLoggedIn && (
         <Link href={"/watchlist"}>
-          <p className="text-white self-center m-2 text-xl">
-            {loggedInUser.toUpperCase()}
+          <p className="flex items-center justify-center text-white text-xl h-full">
+            {loggedInUser.charAt(0).toUpperCase() +
+              loggedInUser.slice(1).toLowerCase()}
           </p>
         </Link>
       )}
       {isLoggedIn && (
         <button
-          className="bg-yellow-500 rounded p-2 w-full hover:bg-yellow-700 text-center transition-colors duration-300"
+          className="bg-yellow-500 rounded p-2 w-full pt-1 pb-1 hover:bg-yellow-700 text-center transition-colors duration-300"
           onClick={() => {
             logout();
             setUsername("");
@@ -60,7 +61,7 @@ export default function AuthLinks(props: AuthLinksProps) {
             router.replace("/");
           }}
         >
-          Logout
+          Log out
         </button>
       )}
     </div>

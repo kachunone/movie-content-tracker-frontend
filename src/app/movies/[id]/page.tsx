@@ -115,7 +115,7 @@ export default async function Page({ params }: { params: { id: number } }) {
             alt="Picture of the author"
             width={300}
             height={450}
-            style={{ margin: "2rem", width: "300px", height: "450px" }}
+            style={{ margin: "2rem", width: "auto", height: "auto" }}
             className="rounded-lg ml-6"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
             placeholder="blur"
@@ -161,7 +161,7 @@ export default async function Page({ params }: { params: { id: number } }) {
             <p className="m-2 text-yellow-600 italic">{movieInfo.tagline}</p>
             <div className="m-2">
               <p className="mb-1 font-semibold">Overview</p>
-              <p className="leading-4 text-sm max-w-3xl">
+              <p className="leading-4 text-sm max-w-3xl text-yellow-600">
                 {movieInfo.overview}
               </p>
             </div>
