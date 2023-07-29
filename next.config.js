@@ -2,6 +2,7 @@
 const nextConfig = {
   images: {
     domains: ["www.themoviedb.org"],
+    unoptimized: true,
   },
 };
 

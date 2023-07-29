@@ -113,10 +113,10 @@ export default async function Page({ params }: { params: { id: number } }) {
           <Image
             src={movieInfo.poster}
             alt="Picture of the author"
-            width={300}
-            height={450}
-            style={{ margin: "2rem", width: "auto", height: "auto" }}
-            className="rounded-lg ml-6"
+            width={260}
+            height={390}
+            style={{ minWidth: "auto", minHeight: "auto" }}
+            className="rounded-lg m-6"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
             placeholder="blur"
           />
