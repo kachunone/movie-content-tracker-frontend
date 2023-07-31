@@ -1,27 +1,7 @@
 import React from "react";
 import { cookies } from "next/headers";
 
-async function getProfile(token?: string) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/profile`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-
-  const profile = await res.json();
-  return profile;
-}
-
-export default async function About() {
-  const cookieStore = cookies();
-  const token = cookieStore.get("token");
-  const profile = await getProfile(token?.value);
-
+export default function About() {
   return (
     <div className="min-h-screen mt-16 bg-myBlueDark flex flex-col justify-center items-center text-4xl ">
       <div className="bg-black rounded-lg bg-opacity-40 min-h-screen py-8 m-6">
