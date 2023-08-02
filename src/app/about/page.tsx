@@ -1,5 +1,4 @@
 import React from "react";
-import { cookies } from "next/headers";
 
 export default function About() {
   return (

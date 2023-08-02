@@ -43,26 +43,30 @@ export default function AuthLinks(props: AuthLinksProps) {
         </>
       )}
       {isLoggedIn && (
-        <Link href={"/watchlist"}>
-          <p className="flex items-center justify-center text-white text-xl h-full">
+        <div className="flex justify-center items-center">
+          <p className="flex items-center justify-center text-white text-xl">
             {loggedInUser.charAt(0).toUpperCase() +
               loggedInUser.slice(1).toLowerCase()}
           </p>
-        </Link>
-      )}
-      {isLoggedIn && (
-        <button
-          className="bg-yellow-500 rounded p-2 w-full pt-1 pb-1 hover:bg-yellow-700 text-center transition-colors duration-300"
-          onClick={() => {
-            logout();
-            setUsername("");
-            deleteCookie("token");
-            router.refresh();
-            router.replace("/");
-          }}
-        >
-          Log out
-        </button>
+          <Link
+            href={"/watchlist"}
+            className="m-4 hover:text-white transition-colors duration-300 text-yellow-500"
+          >
+            Your&nbsp;List
+          </Link>
+          <button
+            className="bg-yellow-500 rounded p-2 hover:bg-yellow-700 text-center transition-colors duration-300"
+            onClick={() => {
+              logout();
+              setUsername("");
+              deleteCookie("token");
+              router.refresh();
+              router.replace("/");
+            }}
+          >
+            Log out
+          </button>
+        </div>
       )}
     </div>
   );
