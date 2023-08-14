@@ -97,7 +97,7 @@ export default function LoginForm() {
           className="m-3 p-3 border-none outline-none rounded-lg w-full"
         />
         <button
-          className="m-3 p-3 border-none rounded-lg w-full bg-yellow-500 bottom-0"
+          className="m-3 p-3 border-none rounded-lg w-full bg-yellow-500 bottom-0 hover:bg-yellow-700 text-center transition-colors duration-300"
           onClick={submitBtnHandler}
         >
           Submit

@@ -122,7 +122,7 @@ export default function SignUpForm() {
           className="m-3 p-3 border-none outline-none rounded-lg w-full"
         />
         <button
-          className="m-3 p-3 border-none rounded-lg bg-yellow-500 w-full"
+          className="m-3 p-3 border-none rounded-lg bg-yellow-500 w-full hover:bg-yellow-700 text-center transition-colors duration-300"
           onClick={submitBtnHandler}
         >
           Sign Up
