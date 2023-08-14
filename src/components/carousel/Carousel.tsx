@@ -47,6 +47,7 @@ export default function Carousel(props: CarouselProps) {
     variableWidth: true,
     centerMode: true,
     draggable: false,
+    adaptiveHeight: true,
   };
 
   return (

@@ -76,8 +76,8 @@ export default function LoginForm() {
 
   return (
     <>
-      <div className="flex flex-col items-center bg-myBlueDark rounded-2xl p-7 h-[420px] mt-20">
-        <h2 className="text-yellow-500 m-4 text-2xl mb-20 font-semibold">
+      <div className="flex flex-col items-center bg-myBlueDark rounded-2xl p-7 h-[440px] mt-20 w-80 max-w-[95vw]">
+        <h2 className="text-yellow-500 text-2xl mb-20 font-semibold">
           Login your account
         </h2>
         <input
@@ -86,7 +86,7 @@ export default function LoginForm() {
           value={formData.email}
           onChange={handleInputChange}
           placeholder="E-mail address"
-          className="m-3 p-3 border-none outline-none rounded-lg w-72"
+          className="m-3 p-3 border-none outline-none rounded-lg w-full"
         />
         <input
           type="password"
@@ -94,10 +94,10 @@ export default function LoginForm() {
           value={formData.password}
           onChange={handleInputChange}
           placeholder="Password"
-          className="m-3 p-3 border-none outline-none rounded-lg w-72"
+          className="m-3 p-3 border-none outline-none rounded-lg w-full"
         />
         <button
-          className="m-3 p-3 border-none rounded-lg w-72 bg-yellow-500 bottom-0"
+          className="m-3 p-3 border-none rounded-lg w-full bg-yellow-500 bottom-0"
           onClick={submitBtnHandler}
         >
           Submit
