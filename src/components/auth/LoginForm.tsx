@@ -5,6 +5,7 @@ import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/app/context/auth";
 import Modal from "@mui/material/Modal";
+import CircularProgress from "@mui/material/CircularProgress";
 
 interface AuthFormData {
   email: string;
@@ -19,10 +20,16 @@ export default function LoginForm() {
     password: "",
   });
 
+  //modal for prompt
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [prompt, setPrompt] = useState({ title: "", message: "" });
+
+  //loading modal
+  const [isLoading, setIsLoading] = React.useState(false);
+  const startLoading = () => setIsLoading(true);
+  const endLoading = () => setIsLoading(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -45,6 +52,7 @@ export default function LoginForm() {
     }
 
     try {
+      startLoading();
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
         {
@@ -58,6 +66,7 @@ export default function LoginForm() {
         }
       );
       const response = await res.json();
+      endLoading();
       if (response.message === "success") {
         setCookie("token", response.access_token);
         login();
@@ -67,7 +76,6 @@ export default function LoginForm() {
       } else if (response.statusCode === 401) {
         setPrompt({ title: "Failure", message: "Email/Password is incorrect" });
         handleOpen();
-        console.log(response.message);
       }
     } catch (error) {
       console.log(error);
@@ -103,10 +111,15 @@ export default function LoginForm() {
           Submit
         </button>
       </div>
-      <Modal open={open} onClose={handleClose} className="">
+      <Modal open={open} onClose={handleClose}>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-myBlueLight text-yellow-500 flex flex-col items-center rounded-lg p-4 outline-none">
           <p>{prompt.title}</p>
           <p>{prompt.message}</p>
+        </div>
+      </Modal>
+      <Modal open={isLoading}>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-myBlueLight text-yellow-500 flex flex-col items-center rounded-lg p-4 outline-none">
+          <CircularProgress color="success" />
         </div>
       </Modal>
     </>

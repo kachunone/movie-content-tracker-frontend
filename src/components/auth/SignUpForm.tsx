@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Modal from "@mui/material/Modal";
 import Link from "next/link";
-import { ClassNames } from "@emotion/react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 // Define the shape of the form data
 interface AuthFormData {
@@ -21,10 +21,20 @@ export default function SignUpForm() {
     password: "",
   });
 
-  const [open, setOpen] = React.useState(false);
+  //modal for prompt
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setShowLoginLink(false);
+  };
   const [prompt, setPrompt] = useState({ title: "", message: "" });
+  const [showLoginLink, setShowLoginLink] = useState(false);
+
+  //loading modal
+  const [isLoading, setIsLoading] = React.useState(false);
+  const startLoading = () => setIsLoading(true);
+  const endLoading = () => setIsLoading(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -54,6 +64,7 @@ export default function SignUpForm() {
     }
 
     try {
+      startLoading();
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/signup`,
         {
@@ -68,13 +79,14 @@ export default function SignUpForm() {
         }
       );
       const response = await res.json();
+      endLoading();
       if (response.statusCode === 200) {
         setPrompt({
           title: "Success",
           message: "Account created, Please log in your account",
         });
+        setShowLoginLink(true);
       } else if (response.statusCode === 400) {
-        console.log("heelo");
         setPrompt({
           title: "Failure",
           message: response.message,
@@ -132,9 +144,16 @@ export default function SignUpForm() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-myBlueLight text-yellow-500 flex flex-col items-center rounded-lg p-4 outline-none">
           <p>{prompt.title}</p>
           <p>{prompt.message}</p>
-          <Link href={"/login"} className="underline text-white m-2">
-            Login
-          </Link>
+          {showLoginLink && (
+            <Link href={"/login"} className="underline text-white m-2">
+              Login
+            </Link>
+          )}
+        </div>
+      </Modal>
+      <Modal open={isLoading}>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-myBlueLight text-yellow-500 flex flex-col items-center rounded-lg p-4 outline-none">
+          <CircularProgress color="success" />
         </div>
       </Modal>
     </>
