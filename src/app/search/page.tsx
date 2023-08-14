@@ -16,10 +16,7 @@ export default function Page(props: PageProps) {
         <h6 className="text-yellow-500 text-2xl font-semibold self-center">
           Result
         </h6>
-        <MoviesList
-          listType="search"
-          params={props.searchParams.keyword}
-        ></MoviesList>
+        <MoviesList params={props.searchParams.keyword}></MoviesList>
       </div>
     </div>
   );

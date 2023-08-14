@@ -1,5 +1,4 @@
 import React from "react";
-import MoviesCard from "./MoviesCard";
 import MovieBar from "./MovieBar";
 
 interface Movie {
@@ -12,17 +11,13 @@ interface Movie {
 }
 
 interface MoviesListProps {
-  listType: "now_playing" | "popular" | "top_rated" | "upcoming" | "search";
   params?: string;
 }
 
-async function getMovies(listType: string, params?: string) {
+async function getMovies(params?: string) {
   const moviesAPI = process.env.NEXT_PUBLIC_MOVIES_API_KEY;
 
-  const url =
-    listType !== "search"
-      ? `https://api.themoviedb.org/3/movie/${listType}?api_key=${moviesAPI}`
-      : `https://api.themoviedb.org/3/search/movie?query=${params}&api_key=${moviesAPI}`;
+  const url = `https://api.themoviedb.org/3/search/movie?query=${params}&api_key=${moviesAPI}`;
 
   const res = await fetch(url);
 
@@ -34,7 +29,7 @@ async function getMovies(listType: string, params?: string) {
 }
 
 export default async function MoviesList(props: MoviesListProps) {
-  const movies = await getMovies(props.listType, props.params);
+  const movies = await getMovies(props.params);
 
   if (movies.results.length === 0) {
     return (
@@ -45,16 +40,7 @@ export default async function MoviesList(props: MoviesListProps) {
   }
 
   const moviesList: [] = movies.results.map((item: Movie) => {
-    return props.listType !== "search" ? (
-      <MoviesCard
-        key={item.id}
-        id={item.id}
-        posterPath={item.poster_path}
-        title={item.title}
-        releaseDate={item.release_date}
-        voteAverage={item.vote_average}
-      ></MoviesCard>
-    ) : (
+    return (
       <MovieBar
         key={item.id}
         id={item.id}

@@ -14,10 +14,10 @@ export default function CreditsCard(props: CreditsCardProps) {
       <Image
         src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${props.profilePath}`}
         alt="Picture of the author"
-        width={120}
-        height={180}
+        width={150}
+        height={225}
         style={{ maxWidth: "auto", maxHeight: "auto" }}
-        className=" rounded"
+        className="rounded w-auto h-auto"
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
         placeholder="blur"
       />

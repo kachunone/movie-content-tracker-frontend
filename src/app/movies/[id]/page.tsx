@@ -2,10 +2,9 @@ import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { CircularProgress } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import Carousel from "@/components/carousel/Carousel";
-import CreditsList from "@/components/credits/CreditsList";
 import NoneImage from "../../../../public/peakpx.jpg";
 import MovieOptBtn from "@/components/movies/MovieOptbtn";
+import CreditsList from "@/components/credits/CreditsList";
 
 function formatCurrency(number: number): string {
   return number.toLocaleString("en-US", {
@@ -186,9 +185,7 @@ export default async function Page({ params }: { params: { id: number } }) {
           </div>
         </div>
       </div>
-      <Carousel title="Credits">
-        <CreditsList movieId={params.id}></CreditsList>
-      </Carousel>
+      <CreditsList movieId={params.id} />
     </div>
   );
 }

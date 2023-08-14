@@ -24,7 +24,7 @@ export default function MoviesCard(props: MoviesCardProps) {
   return (
     <Link
       href={`/movies/${props.id}`}
-      className=" group mr-4 rounded-md flex flex-col w-full h-full cursor-pointer outline-none bg-black bg-opacity-50 p-1"
+      className=" group rounded-md m-1 flex flex-col cursor-pointer outline-none bg-black bg-opacity-50 p-1"
     >
       <Image
         src={posterPath}

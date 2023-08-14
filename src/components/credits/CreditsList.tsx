@@ -1,5 +1,7 @@
 import React from "react";
 import CreditsCard from "./CreditsCard";
+import { Box } from "@mui/material";
+import { Height } from "@mui/icons-material";
 
 interface Credit {
   id: number;
@@ -22,22 +24,32 @@ async function getCredits(id: number) {
     throw new Error("Failed to fetch credits");
   }
 
-  return res.json();
+  const jsonData = await res.json();
+  const creditsList = jsonData["cast"]
+    .filter((item: Credit) => item.profile_path !== null)
+    .map((item: Credit) => (
+      <div key={item.id} style={{ width: 150 }}>
+        <CreditsCard
+          id={item.id}
+          name={item.name}
+          character={item.character}
+          profilePath={item.profile_path}
+        ></CreditsCard>
+      </div>
+    ));
+
+  return creditsList;
 }
 
 export default async function CreditsList(props: CreditsListProps) {
   const credits = await getCredits(props.movieId);
-  const creditsList = credits["cast"]
-    .filter((item: Credit) => item.profile_path !== null)
-    .map((item: Credit) => (
-      <CreditsCard
-        key={item.id}
-        id={item.id}
-        name={item.name}
-        character={item.character}
-        profilePath={item.profile_path}
-      ></CreditsCard>
-    ));
 
-  return creditsList;
+  return (
+    <div className="flex flex-col items-center justify-center mt-6">
+      <h6 className="text-yellow-500 text-2xl mb-2 font-semibold">Credits</h6>
+      <div className="flex items-center overflow-auto max-w-[75vw] scrollbar-thin scrollbar-track-myBlueLight scrollbar-thumb-yellow-500 rounded-md pb-3">
+        {credits}
+      </div>
+    </div>
+  );
 }
