@@ -26,7 +26,7 @@ export default function CreditsCard(props: CreditsCardProps) {
           {props.name}
         </p>
         <p className="group-hover:text-white text-xs text-yellow-600 truncate ... transition-colors duration-300">
-          {props.character}
+          {props.character ? props.character : "unknown"}
         </p>
       </div>
     </div>

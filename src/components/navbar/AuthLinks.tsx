@@ -43,16 +43,22 @@ export default function AuthLinks(props: AuthLinksProps) {
         </>
       )}
       {isLoggedIn && (
-        <div className="flex justify-center items-center">
+        <div
+          className={
+            props.isDrawer
+              ? "flex flex-col justify-center"
+              : "flex justify-center items-center"
+          }
+        >
           <p className="flex items-center justify-center text-white text-xl">
             {loggedInUser.charAt(0).toUpperCase() +
               loggedInUser.slice(1).toLowerCase()}
           </p>
           <Link
             href={"/watchlist"}
-            className="m-4 hover:text-white transition-colors duration-300 text-yellow-500"
+            className="m-4 hover:text-white transition-colors duration-300 text-yellow-500 text-center"
           >
-            Your&nbsp;List
+            My&nbsp;List
           </Link>
           <button
             className="bg-yellow-500 rounded p-2 hover:bg-yellow-700 text-center transition-colors duration-300"
