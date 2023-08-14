@@ -55,7 +55,7 @@ export default function Carousel(props: CarouselProps) {
       <h6 className="text-yellow-500 text-2xl mb-2 font-semibold ">
         {props.title}
       </h6>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center w-[75vw]">
         <KeyboardArrowLeftIcon
           style={{
             width: "3rem",
@@ -66,7 +66,7 @@ export default function Carousel(props: CarouselProps) {
         >
           Prev
         </KeyboardArrowLeftIcon>
-        <Slider ref={slider} {...settings} className="w-[75vw] rounded-md">
+        <Slider ref={slider} {...settings} className="rounded-md w-[90%]">
           {items}
         </Slider>
         <KeyboardArrowRightIcon
