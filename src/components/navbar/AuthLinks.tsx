@@ -2,7 +2,7 @@
 
 import React, { useContext } from "react";
 import Link from "next/link";
-import { AuthContext } from "@/app/context/auth";
+import { AuthContext } from "@/context/auth";
 import { useRouter } from "next/navigation";
 import { deleteCookie } from "cookies-next";
 

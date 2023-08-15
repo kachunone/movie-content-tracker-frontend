@@ -7,7 +7,7 @@ import { StaticImageData } from "next/image";
 import Modal from "@mui/material/Modal";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
-import { AuthContext } from "@/app/context/auth";
+import { AuthContext } from "@/context/auth";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const style = {

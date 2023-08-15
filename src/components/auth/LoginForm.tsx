@@ -3,7 +3,7 @@
 import React, { useContext, useState } from "react";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "@/app/context/auth";
+import { AuthContext } from "@/context/auth";
 import Modal from "@mui/material/Modal";
 import CircularProgress from "@mui/material/CircularProgress";
 

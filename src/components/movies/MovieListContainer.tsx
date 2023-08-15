@@ -42,7 +42,7 @@ export default async function MovieListContainer() {
   const upcomingMovies = await getMovies("upcoming");
 
   return (
-    <div className="mt-32 flex flex-col gap-6">
+    <div className="mt-3 flex flex-col gap-6">
       <Carousel title="Now Playing" items={nowPlayingMovies}></Carousel>
       <Carousel title="Popular" items={popularMovies}></Carousel>
       <Carousel title="Top Rated" items={topRatedMovies}></Carousel>
