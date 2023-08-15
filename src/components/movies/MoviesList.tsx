@@ -16,15 +16,12 @@ interface MoviesListProps {
 
 async function getMovies(params?: string) {
   const moviesAPI = process.env.NEXT_PUBLIC_MOVIES_API_KEY;
-
   const url = `https://api.themoviedb.org/3/search/movie?query=${params}&api_key=${moviesAPI}`;
-
   const res = await fetch(url);
 
   if (!res.ok) {
     throw new Error("Failed to fetch movies");
   }
-
   return await res.json();
 }
 

@@ -12,7 +12,7 @@ interface MovieBarProps {
   releaseDate: string;
   voteAverage?: number;
   overview: string;
-  isWachList?: boolean;
+  isWatchList?: boolean;
 }
 
 export default function MovieBar(props: MovieBarProps) {
@@ -29,7 +29,7 @@ export default function MovieBar(props: MovieBarProps) {
       : NoneImage;
 
   return (
-    <div className=" h-48 w-full flex bg-black rounded-lg bg-opacity-40">
+    <div className="h-48 w-full flex bg-black rounded-lg bg-opacity-40">
       <Image
         src={posterPath}
         alt="Picture of the author"
@@ -70,9 +70,7 @@ export default function MovieBar(props: MovieBarProps) {
                 <div className="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center text-yellow-500 text-xs">{`${ratedPercent}%`}</div>
               </>
             )}
-            {props.isWachList && (
-              <MovieDeleteBtn movieId={props.id}></MovieDeleteBtn>
-            )}
+            {props.isWatchList && <MovieDeleteBtn movieId={props.id} />}
           </div>
         </div>
         <p className="text-yellow-600 line-clamp-3 text-sm">{props.overview}</p>

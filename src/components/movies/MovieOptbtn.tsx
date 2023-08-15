@@ -6,9 +6,10 @@ import { getCookie } from "cookies-next";
 import { StaticImageData } from "next/image";
 import Modal from "@mui/material/Modal";
 import { useRouter } from "next/navigation";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
+import { MovieService } from "@/services/Movie";
 import { AuthContext } from "@/context/auth";
 import CircularProgress from "@mui/material/CircularProgress";
+import { StepIconClassKey } from "@mui/material";
 
 const style = {
   position: "absolute" as "absolute",
@@ -25,7 +26,7 @@ const style = {
 interface MovieOptBtnProps {
   data: {
     movieId: number;
-    poster: string | StaticImageData;
+    poster: string;
     title: string;
     releaseDate: string;
     overview: string;
@@ -56,26 +57,7 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
 
     try {
       startLoading();
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/add-movie`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            id: props.data.movieId,
-            poster_path: props.data.poster,
-            title: props.data.title,
-            release_date: props.data.releaseDate,
-            overview: props.data.overview,
-            mark: props.data.mark,
-          }),
-          cache: "no-store",
-        }
-      );
-      const response = await res.json();
+      const response = await MovieService.addMovie(props.data, token as string);
       endLoading();
       let msg = { title: "Failure", message: "Movie may be added already" };
       if (response.statusCode === 200) {

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Modal from "@mui/material/Modal";
 import Link from "next/link";
 import CircularProgress from "@mui/material/CircularProgress";
+import { AuthService } from "@/services/Auth";
 
 // Define the shape of the form data
 interface AuthFormData {
@@ -65,20 +66,7 @@ export default function SignUpForm() {
 
     try {
       startLoading();
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/signup`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            password: formData.password,
-          }),
-          cache: "no-store",
-        }
-      );
-      const response = await res.json();
+      const response = await AuthService.signup(formData);
       endLoading();
       if (response.statusCode === 200) {
         setPrompt({

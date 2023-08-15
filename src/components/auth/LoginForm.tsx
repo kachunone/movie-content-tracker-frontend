@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { AuthContext } from "@/context/auth";
 import Modal from "@mui/material/Modal";
 import CircularProgress from "@mui/material/CircularProgress";
+import { AuthService } from "@/services/Auth";
 
 interface AuthFormData {
   email: string;
@@ -53,19 +54,7 @@ export default function LoginForm() {
 
     try {
       startLoading();
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password,
-          }),
-          cache: "no-store",
-        }
-      );
-      const response = await res.json();
+      const response = await AuthService.login(formData);
       endLoading();
       if (response.message === "success") {
         setCookie("token", response.access_token);

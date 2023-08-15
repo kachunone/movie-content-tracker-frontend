@@ -7,6 +7,7 @@ import { getCookie } from "cookies-next";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 import Modal from "@mui/material/Modal";
 import CircularProgress from "@mui/material/CircularProgress";
+import { MovieService } from "@/services/Movie";
 
 interface MovieDeleteBtnProps {
   movieId: number;
@@ -27,18 +28,10 @@ export default function MovieDeleteBtn(props: MovieDeleteBtnProps) {
   const deleteMovie = async () => {
     const token = getCookie("token");
     startLoading();
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/delete-movie/${props.movieId}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        cache: "no-store",
-      }
+    const result = await MovieService.deleteMovie(
+      props.movieId,
+      token as string
     );
-    const result = await res.json();
     endLoading();
     if (result.statusCode === 200) {
       router.refresh();

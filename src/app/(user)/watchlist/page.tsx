@@ -52,7 +52,7 @@ export default async function WatchList() {
         title={movie.title}
         releaseDate={movie.release_date}
         overview={movie.overview}
-        isWachList={true}
+        isWatchList={true}
       ></MovieBar>
     );
   });
