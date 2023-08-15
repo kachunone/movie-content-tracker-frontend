@@ -1,10 +1,13 @@
 const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+const MOVIES_API = process.env.NEXT_PUBLIC_MOVIES_API_KEY;
+
+import { StaticImageData } from "next/image";
 
 export class MovieService {
   static async addMovie(
     moiveData: {
       movieId: number;
-      poster: string;
+      poster: string | StaticImageData;
       title: string;
       releaseDate: string;
       overview: string;
@@ -40,6 +43,27 @@ export class MovieService {
       },
       cache: "no-store",
     });
+    return await res.json();
+  }
+
+  static async searchMovies(keyword: string) {
+    const url = `https://api.themoviedb.org/3/search/movie?query=${keyword}&api_key=${MOVIES_API}`;
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch movies");
+    }
+    return await res.json();
+  }
+
+  static async getMovies(listType: string) {
+    const url = `https://api.themoviedb.org/3/movie/${listType}?api_key=${MOVIES_API}`;
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch movies");
+    }
+
     return await res.json();
   }
 }

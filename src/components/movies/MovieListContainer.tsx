@@ -1,5 +1,6 @@
 import React from "react";
 import Carousel from "@/components/carousel/Carousel";
+import { MovieService } from "@/services/Movie";
 
 interface Movie {
   id: number;
@@ -11,16 +12,7 @@ interface Movie {
 }
 
 async function getMovies(listType: string) {
-  const moviesAPI = process.env.NEXT_PUBLIC_MOVIES_API_KEY;
-  const url = `https://api.themoviedb.org/3/movie/${listType}?api_key=${moviesAPI}`;
-  const res = await fetch(url);
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch movies");
-  }
-
-  const jsonData = await res.json();
-
+  const jsonData = await MovieService.getMovies(listType);
   const moviesList = jsonData.results.map((item: Movie) => {
     return {
       key: item.id,
@@ -31,7 +23,6 @@ async function getMovies(listType: string) {
       voteAverage: item.vote_average,
     };
   });
-
   return moviesList;
 }
 

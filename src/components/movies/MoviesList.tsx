@@ -1,5 +1,6 @@
 import React from "react";
 import MovieBar from "./MovieBar";
+import { MovieService } from "@/services/Movie";
 
 interface Movie {
   id: number;
@@ -11,22 +12,11 @@ interface Movie {
 }
 
 interface MoviesListProps {
-  params?: string;
-}
-
-async function getMovies(params?: string) {
-  const moviesAPI = process.env.NEXT_PUBLIC_MOVIES_API_KEY;
-  const url = `https://api.themoviedb.org/3/search/movie?query=${params}&api_key=${moviesAPI}`;
-  const res = await fetch(url);
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch movies");
-  }
-  return await res.json();
+  params: string;
 }
 
 export default async function MoviesList(props: MoviesListProps) {
-  const movies = await getMovies(props.params);
+  const movies = await MovieService.searchMovies(props.params);
 
   if (movies.results.length === 0) {
     return (

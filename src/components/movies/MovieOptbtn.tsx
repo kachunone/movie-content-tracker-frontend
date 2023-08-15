@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import { MovieService } from "@/services/Movie";
 import { AuthContext } from "@/context/auth";
 import CircularProgress from "@mui/material/CircularProgress";
-import { StepIconClassKey } from "@mui/material";
 
 const style = {
   position: "absolute" as "absolute",
@@ -26,7 +25,7 @@ const style = {
 interface MovieOptBtnProps {
   data: {
     movieId: number;
-    poster: string;
+    poster: string | StaticImageData;
     title: string;
     releaseDate: string;
     overview: string;
