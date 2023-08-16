@@ -13,7 +13,8 @@ export class MovieService {
       overview: string;
       mark: string;
     },
-    token: string
+    token: string,
+    mark: string
   ) {
     const res = await fetch(`${BASE_URL}/user/add-movie`, {
       method: "POST",
@@ -27,7 +28,7 @@ export class MovieService {
         title: moiveData.title,
         release_date: moiveData.releaseDate,
         overview: moiveData.overview,
-        mark: moiveData.mark,
+        mark: mark,
       }),
       cache: "no-store",
     });
