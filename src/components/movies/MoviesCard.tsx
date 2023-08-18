@@ -47,7 +47,7 @@ export default function MoviesCard(props: MoviesCardProps) {
           {`${ratedPercent}%`}
         </div>
       </div>
-      <div className="w-[120px]">
+      <div>
         <h3 className="group-hover:text-white text-sm text-yellow-500 truncate ... transition duration-300">
           {props.title}
         </h3>
