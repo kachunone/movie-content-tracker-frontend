@@ -22,7 +22,7 @@ export default function Navigation() {
   };
 
   return (
-    <div className="min-w-[100vw] h-16 fixed top-0 left-0 bg-myBlueDarker z-50 flex justify-center">
+    <div className="w-screen h-16 fixed top-0 left-0 bg-myBlueDarker z-50 flex justify-center">
       <div className=" w-5/6 h-16 flex items-center justify-center md:justify-between">
         <div className="flex flex-row justify-center items-center">
           <MovieCreation

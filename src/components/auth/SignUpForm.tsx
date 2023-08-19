@@ -6,6 +6,7 @@ import Modal from "@mui/material/Modal";
 import Link from "next/link";
 import CircularProgress from "@mui/material/CircularProgress";
 import { AuthService } from "@/services/Auth";
+import { Alert, AlertColor } from "@mui/material";
 
 // Define the shape of the form data
 interface AuthFormData {
@@ -29,7 +30,7 @@ export default function SignUpForm() {
     setOpen(false);
     setShowLoginLink(false);
   };
-  const [prompt, setPrompt] = useState({ title: "", message: "" });
+  const [prompt, setPrompt] = useState({ severity: "", message: "" });
   const [showLoginLink, setShowLoginLink] = useState(false);
 
   //loading modal
@@ -49,8 +50,8 @@ export default function SignUpForm() {
       formData.password === ""
     ) {
       setPrompt({
-        title: "Failure",
-        message: "Username/Email/Password can't be empty",
+        severity: "info",
+        message: "username/email/password can't be empty",
       });
       handleOpen();
       return;
@@ -59,7 +60,7 @@ export default function SignUpForm() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(formData.email.trim())) {
-      setPrompt({ title: "Failure", message: "Please enter a valid email" });
+      setPrompt({ severity: "info", message: "Email Format Invalid" });
       handleOpen();
       return;
     }
@@ -70,19 +71,19 @@ export default function SignUpForm() {
       endLoading();
       if (response.statusCode === 200) {
         setPrompt({
-          title: "Success",
-          message: "Account created, Please log in your account",
+          severity: "success",
+          message: "Account Created",
         });
         setShowLoginLink(true);
       } else if (response.statusCode === 400) {
         setPrompt({
-          title: "Failure",
+          severity: "error",
           message: response.message,
         });
       } else {
         setPrompt({
-          title: "Failure",
-          message: "Unknown reason",
+          severity: "error",
+          message: "Unknown Reason",
         });
       }
       handleOpen();
@@ -93,54 +94,59 @@ export default function SignUpForm() {
 
   return (
     <>
-      <div className="flex flex-col items-center bg-myBlueDark rounded-2xl p-7 h-[440px] mt-20 w-80 max-w-[95vw]">
+      <div className="flex flex-col items-center bg-myBlueDark rounded-2xl p-7 h-full mt-20 w-80 max-w-[95vw]">
         <h2 className="text-yellow-500 text-2xl mb-20 font-semibold">
           Create an account
         </h2>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleInputChange}
-          placeholder="Username"
-          className="m-3 p-3 border-none outline-none rounded-lg w-full"
-        />
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleInputChange}
-          placeholder="E-mail address"
-          className="m-3 p-3 border-none outline-none rounded-lg w-full"
-        />
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleInputChange}
-          placeholder="Password"
-          className="m-3 p-3 border-none outline-none rounded-lg w-full"
-        />
-        <button
-          className="m-3 p-3 border-none rounded-lg bg-yellow-500 w-full hover:bg-yellow-700 text-center transition-colors duration-300"
-          onClick={submitBtnHandler}
-        >
-          Sign Up
-        </button>
-      </div>
-      <Modal open={open} onClose={handleClose} className="">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-myBlueLight text-yellow-500 flex flex-col items-center rounded-lg p-4 outline-none">
-          <p>{prompt.title}</p>
-          <p>{prompt.message}</p>
-          {showLoginLink && (
-            <Link href={"/login"} className="underline text-white m-2">
-              Login
-            </Link>
-          )}
+        {open && (
+          <Alert
+            variant="filled"
+            severity={prompt.severity as AlertColor}
+            className="mb-6 border-none outline-none rounded-lg w-full"
+          >
+            {prompt.message}
+            {showLoginLink && (
+              <Link href={"/login"} className="underline text-white m-2">
+                Login
+              </Link>
+            )}
+          </Alert>
+        )}
+        <div className="flex flex-col w-full gap-6 ">
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            placeholder="Username"
+            className="p-3 border-none outline-none rounded-lg w-full"
+          />
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            placeholder="E-mail address"
+            className="p-3 border-none outline-none rounded-lg w-full"
+          />
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange}
+            placeholder="Password"
+            className="p-3 border-none outline-none rounded-lg w-full"
+          />
+          <button
+            className="p-3 border-none rounded-lg bg-yellow-500 w-full hover:bg-yellow-700 text-center transition-colors duration-300"
+            onClick={submitBtnHandler}
+          >
+            Sign Up
+          </button>
         </div>
-      </Modal>
+      </div>
       <Modal open={isLoading}>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-myBlueLight text-yellow-500 flex flex-col items-center rounded-lg p-4 outline-none">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-yellow-500">
           <CircularProgress style={{ color: "#FFDB0E" }} />
         </div>
       </Modal>

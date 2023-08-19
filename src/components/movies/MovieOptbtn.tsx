@@ -9,10 +9,9 @@ import { useRouter } from "next/navigation";
 import { MovieService } from "@/services/Movie";
 import { AuthContext } from "@/context/auth";
 import CircularProgress from "@mui/material/CircularProgress";
-
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { Alert, AlertColor } from "@mui/material";
 
 interface MovieOptBtnProps {
   data: {
@@ -33,7 +32,7 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [prompt, setPrompt] = useState({ title: "", message: "" });
+  const [prompt, setPrompt] = useState({ severity: "", message: "" });
 
   //loading modal
   const [isLoading, setIsLoading] = React.useState(false);
@@ -48,8 +47,7 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
   const handleCloseMenu = async (mark: string) => {
     setAnchorEl(null);
     if (!isLoggedIn) {
-      console.log("login status: ", isLoggedIn);
-      setPrompt({ title: "Failure", message: "Please log in first" });
+      setPrompt({ severity: "info", message: "Login Required" });
       handleOpen();
       return;
     }
@@ -58,7 +56,6 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
 
   async function addToList(mark: string) {
     if (!token) {
-      console.log("no user");
       return;
     }
 
@@ -70,10 +67,10 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
         mark
       );
       endLoading();
-      let msg = { title: "Failure", message: "Movie may be added already" };
+      let msg = { severity: "error", message: "Action Failed" };
       if (response.statusCode === 200) {
         router.refresh();
-        msg = { title: "Success", message: "Movie has been added" };
+        msg = { severity: "success", message: "Movie Added" };
       }
       setPrompt(msg);
       handleOpen();
@@ -85,10 +82,10 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
 
   return (
     <div>
-      <div onClick={handleClick}>
+      <div onClick={handleClick} className="m-1">
         <BookmarkAddIcon
           style={{ width: "2.5rem", height: "2.5rem" }}
-          className="ml-3 hover:text-yellow-700 cursor-pointer bg-myBlueDark p-2 rounded-full transition-colors duration-300"
+          className="hover:text-yellow-700 cursor-pointer bg-myBlueDark p-2 rounded-full transition-colors duration-300"
         />
       </div>
       <Menu
@@ -102,6 +99,7 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
             backgroundColor: "#201F28", // Set your desired color here
             color: "#FFDB0E",
           },
+          mt: 0.5,
         }}
       >
         <MenuItem
@@ -133,13 +131,14 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
       </Menu>
 
       <Modal open={open} onClose={handleClose} className="">
-        <div className="absolute  outline-none top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-myBlueLight text-yellow-500 flex flex-col items-center rounded-lg p-4">
-          <p>{prompt.title}</p>
-          <p>{prompt.message}</p>
+        <div className="absolute  outline-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <Alert variant="filled" severity={prompt.severity as AlertColor}>
+            {prompt.message}
+          </Alert>
         </div>
       </Modal>
       <Modal open={isLoading}>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-myBlueLight text-yellow-500 flex flex-col items-center rounded-lg p-4 outline-none">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-yellow-500">
           <CircularProgress style={{ color: "#FFDB0E" }} />
         </div>
       </Modal>
