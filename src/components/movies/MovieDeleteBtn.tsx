@@ -58,7 +58,7 @@ export default function MovieDeleteBtn(props: MovieDeleteBtnProps) {
         </div>
       </Modal>
       <Modal open={isLoading}>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-myBlueLight text-yellow-500 flex flex-col items-center rounded-lg p-4 outline-none">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-yellow-500">
           <CircularProgress style={{ color: "#FFDB0E" }} />
         </div>
       </Modal>
