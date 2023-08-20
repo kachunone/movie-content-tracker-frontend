@@ -69,7 +69,6 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
       endLoading();
       let msg = { severity: "error", message: "Action Failed" };
       if (response.statusCode === 200) {
-        router.refresh();
         msg = { severity: "success", message: "Movie Added" };
       }
       setPrompt(msg);
