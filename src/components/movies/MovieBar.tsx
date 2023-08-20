@@ -82,14 +82,16 @@ export default function MovieBar(props: MovieBarProps) {
           priority={true}
         />
         <div className="flex flex-col w-full h-full p-3">
-          <div className="text-yellow-500 grid grid-cols-2 grid-rows-2">
+          <div className="text-yellow-500 grid grid-cols-10 grid-rows-2">
             <Link
-              className="line-clamp-1 font-semibold hover:text-white transition-colors duration-300 text-base"
+              className={`${
+                props.isWatchList ? "col-span-9" : "col-span-10"
+              } line-clamp-1 font-semibold hover:text-white transition-colors duration-300 text-base`}
               href={`/movies/${props.id}`}
             >
               {props.title}
             </Link>
-            <div className="col-span-1 row-span-2 flex justify-end items-center">
+            <div className="col-span-1 row-span-2 flex justify-end items-start ">
               {props.isWatchList && (
                 <DeleteOutlineIcon
                   style={{ width: "2rem", height: "2rem" }}
