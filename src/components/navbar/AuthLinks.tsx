@@ -57,6 +57,7 @@ export default function AuthLinks(props: AuthLinksProps) {
           <Link
             href={"/watchlist"}
             className="m-4 hover:text-white transition-colors duration-300 text-yellow-500 text-center"
+            onClick={props.closeDrawerHandle}
           >
             My&nbsp;List
           </Link>
@@ -68,6 +69,9 @@ export default function AuthLinks(props: AuthLinksProps) {
               deleteCookie("token");
               router.refresh();
               router.replace("/");
+              if (props.closeDrawerHandle) {
+                props.closeDrawerHandle();
+              }
             }}
           >
             Log out
