@@ -32,7 +32,7 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [prompt, setPrompt] = useState({ severity: "", message: "" });
+  const [prompt, setPrompt] = useState({ severity: "info", message: "" });
 
   //loading modal
   const [isLoading, setIsLoading] = React.useState(false);
@@ -96,7 +96,7 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
         }}
         sx={{
           "& .MuiPaper-root": {
-            backgroundColor: "#201F28", // Set your desired color here
+            backgroundColor: "#201F28",
             color: "#FFDB0E",
           },
           mt: 0.5,
@@ -130,7 +130,7 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
         </MenuItem>
       </Menu>
 
-      <Modal open={open} onClose={handleClose} className="">
+      <Modal open={open} onClose={handleClose}>
         <div className="absolute  outline-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <Alert variant="filled" severity={prompt.severity as AlertColor}>
             {prompt.message}

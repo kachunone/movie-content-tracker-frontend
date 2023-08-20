@@ -9,6 +9,7 @@ interface Movie {
   release_date: string;
   vote_average: number;
   overview: string;
+  mark: string;
 }
 
 interface MoviesListProps {
@@ -36,6 +37,7 @@ export default async function MoviesList(props: MoviesListProps) {
         releaseDate={item.release_date}
         voteAverage={item.vote_average}
         overview={item.overview}
+        mark={item.mark}
       ></MovieBar>
     );
   });
