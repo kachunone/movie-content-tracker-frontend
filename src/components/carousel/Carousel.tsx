@@ -98,7 +98,7 @@ export default function Carousel(props: CarouselProps) {
           {props.title}
         </h6>
       )}
-      <div className="flex items-center justify-center w-[100vw]">
+      <div className="flex items-center justify-center">
         {isSlideReady && (
           <KeyboardArrowLeftIcon
             className="text-yellow-500 hover:text-white cursor-pointer transition duration-300 w-8 h-36 bg-black bg-opacity-50 rounded-md m-1 hidden sm:block"
@@ -110,7 +110,7 @@ export default function Carousel(props: CarouselProps) {
         <Slider
           ref={slider}
           {...settings}
-          className="rounded-md w-[100vw] sm:w-[90vw]"
+          className="rounded-md w-[100vw] sm:w-[70vw]"
         >
           {items}
         </Slider>
