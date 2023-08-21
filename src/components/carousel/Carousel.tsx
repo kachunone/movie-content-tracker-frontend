@@ -71,45 +71,52 @@ export default function Carousel(props: CarouselProps) {
         breakpoint: 768,
         settings: {
           slidesToShow: 2,
+          centerMode: true,
         },
       },
       {
         breakpoint: 576,
         settings: {
           slidesToShow: 2,
+          centerMode: true,
         },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
+          centerMode: true,
         },
       },
     ],
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-3 ">
+    <div className="flex flex-col items-center justify-center ">
       {isSlideReady && (
         <h6 className="text-yellow-500 text-2xl mb-2 font-semibold ">
           {props.title}
         </h6>
       )}
-      <div className="flex items-center justify-center w-[75vw]">
+      <div className="flex items-center justify-center w-[100vw]">
         {isSlideReady && (
           <KeyboardArrowLeftIcon
-            className="text-yellow-500 hover:text-white cursor-pointer transition duration-300 w-8 h-36 bg-black bg-opacity-50 rounded-md m-1"
+            className="text-yellow-500 hover:text-white cursor-pointer transition duration-300 w-8 h-36 bg-black bg-opacity-50 rounded-md m-1 hidden sm:block"
             onClick={() => slider?.current?.slickPrev()}
           >
             Prev
           </KeyboardArrowLeftIcon>
         )}
-        <Slider ref={slider} {...settings} className="rounded-md w-[90%]">
+        <Slider
+          ref={slider}
+          {...settings}
+          className="rounded-md w-[100vw] sm:w-[90vw]"
+        >
           {items}
         </Slider>
         {isSlideReady && (
           <KeyboardArrowRightIcon
-            className="text-yellow-500 hover:text-white cursor-pointer transition duration-300 w-8 h-36 bg-black bg-opacity-50 rounded-md m-1"
+            className="text-yellow-500 hover:text-white cursor-pointer transition duration-300 w-8 h-36 bg-black bg-opacity-50 rounded-md m-1 hidden sm:block"
             onClick={() => slider?.current?.slickNext()}
           >
             Next

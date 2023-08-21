@@ -96,10 +96,6 @@ export default function WatchlistPanel() {
                     color: "#FFDB0E",
                     mt: 0.5,
                   },
-                  ".Mui-selected": {
-                    backgroundColor: "#EAB306",
-                    color: "#201F28",
-                  },
                   ".MuiMenuItem-root:hover": {
                     backgroundColor: "#EAB306",
                     color: "#201F28",
