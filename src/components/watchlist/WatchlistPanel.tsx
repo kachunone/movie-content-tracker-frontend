@@ -91,12 +91,12 @@ export default function WatchlistPanel() {
               input={<BootstrapInput />}
               MenuProps={{
                 sx: {
-                  "& .MuiPaper-root": {
+                  ".MuiPaper-root": {
                     backgroundColor: "#12161E",
                     color: "#FFDB0E",
                     mt: 0.5,
                   },
-                  "& .Mui-selected": {
+                  ".Mui-selected": {
                     backgroundColor: "#EAB306",
                     color: "#201F28",
                   },

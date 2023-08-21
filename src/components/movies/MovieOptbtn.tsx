@@ -94,7 +94,7 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
           setAnchorEl(null);
         }}
         sx={{
-          "& .MuiPaper-root": {
+          ".MuiPaper-root": {
             backgroundColor: "#201F28",
             color: "#FFDB0E",
           },
