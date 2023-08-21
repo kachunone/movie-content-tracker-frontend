@@ -76,10 +76,13 @@ export default function MovieBar(props: MovieBarProps) {
           width={150}
           height={225}
           style={{ width: "auto", height: "auto" }}
-          className=" rounded-lg w-auto h-auto"
+          className=" rounded-lg w-auto h-auto hover:brightness-50 transition duration-300"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
           placeholder="blur"
           priority={true}
+          onClick={() => {
+            router.push(`/movies/${props.id}`);
+          }}
         />
         <div className="flex flex-col w-full h-full p-3">
           <div className="text-yellow-500 grid grid-cols-10 grid-rows-2">
@@ -101,7 +104,7 @@ export default function MovieBar(props: MovieBarProps) {
             <p className=" text-sm text-yellow-600">{releasedYear}</p>
           </div>
 
-          <div className="flex p-3 pl-0">
+          <div className="flex p-3 px-0">
             <div className="relative inline-flex">
               {ratedPercent && (
                 <>
@@ -119,7 +122,7 @@ export default function MovieBar(props: MovieBarProps) {
                 </>
               )}
               {props.isWatchList && (
-                <p className="bg-yellow-100 text-yellow-200 p-2 rounded bg-opacity-20 text-sm">
+                <p className="bg-yellow-500 text-yellow-200 p-2 rounded bg-opacity-20 text-sm w-full">
                   {props.mark.toUpperCase()}
                 </p>
               )}

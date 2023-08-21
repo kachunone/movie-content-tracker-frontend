@@ -98,6 +98,10 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
             backgroundColor: "#201F28",
             color: "#FFDB0E",
           },
+          ".MuiMenuItem-root:hover": {
+            backgroundColor: "#EAB306",
+            color: "#201F28",
+          },
           mt: 0.5,
         }}
       >
@@ -105,24 +109,12 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
           onClick={() => {
             handleCloseMenu("watched");
           }}
-          sx={{
-            "&:hover": {
-              backgroundColor: "#EAB306",
-              color: "#201F28",
-            },
-          }}
         >
           Watched
         </MenuItem>
         <MenuItem
           onClick={() => {
             handleCloseMenu("wish to watch");
-          }}
-          sx={{
-            "&:hover": {
-              backgroundColor: "#EAB306",
-              color: "#201F28",
-            },
           }}
         >
           Wish to watch

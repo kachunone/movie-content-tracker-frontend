@@ -67,4 +67,16 @@ export class MovieService {
 
     return await res.json();
   }
+
+  static async getMoviesByUser(token?: string) {
+    const res = await fetch(`${BASE_URL}/user/movies`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const response = await res.json();
+    return Array.isArray(response) ? response : [];
+  }
 }
