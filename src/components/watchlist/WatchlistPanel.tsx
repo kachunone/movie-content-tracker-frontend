@@ -100,6 +100,10 @@ export default function WatchlistPanel() {
                     backgroundColor: "#EAB306",
                     color: "#201F28",
                   },
+                  ".MuiMenuItem-root.Mui-selected:hover": {
+                    backgroundColor: "#EAB306",
+                    color: "#201F28",
+                  },
                 },
               }}
             >
@@ -165,7 +169,7 @@ function NoMoviesMessage() {
 }
 
 const BootstrapInput = styled(InputBase)(() => ({
-  "& .MuiInputBase-input": {
+  ".MuiInputBase-input": {
     borderRadius: 6,
     position: "relative",
     backgroundColor: "#12161E",
@@ -173,10 +177,10 @@ const BootstrapInput = styled(InputBase)(() => ({
     fontSize: 16,
     padding: "10px 26px 10px 12px",
   },
-  "& .MuiSelect-icon": {
+  ".MuiSelect-icon": {
     color: "#FFDB0E",
   },
-  "& .MuiSelect-select": {
+  ".MuiSelect-select": {
     color: "#FFDB0E",
   },
 }));

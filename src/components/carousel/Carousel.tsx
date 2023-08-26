@@ -84,6 +84,13 @@ export default function Carousel(props: CarouselProps) {
       {
         breakpoint: 480,
         settings: {
+          slidesToShow: 2,
+          centerMode: true,
+        },
+      },
+      {
+        breakpoint: 400,
+        settings: {
           slidesToShow: 1,
           centerMode: true,
         },

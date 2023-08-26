@@ -105,7 +105,7 @@ export default async function Page({ params }: { params: { id: number } }) {
           backgroundPosition: "center",
         }}
       >
-        <div className="mt-16 relative flex flex-col items-center justify-center sm:flex-row bg-opacity-60 bg-black backdrop-blur-xl">
+        <div className="relative flex flex-col items-center justify-center sm:flex-row bg-opacity-60 bg-black backdrop-blur-xl">
           <Image
             src={movieInfo.poster}
             alt="Picture of the author"

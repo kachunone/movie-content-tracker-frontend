@@ -1,8 +1,8 @@
-import Navigation from "@/components/navbar/Navigation";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Footer from "@/components/footer/Footer";
 import { AuthContextProvider } from "../context/auth";
+import PrimarySearchAppBar from "@/components/appbar/AppBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AuthContextProvider>
-          <Navigation></Navigation>
+          <PrimarySearchAppBar />
           {children}
           <Footer></Footer>
         </AuthContextProvider>
