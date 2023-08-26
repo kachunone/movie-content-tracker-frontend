@@ -117,7 +117,11 @@ export default function ResponsiveAppBar() {
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
-                <Link key={page.option} href={`${page.link}`} className="m-2">
+                <Link
+                  key={page.option}
+                  href={`${page.link}`}
+                  className="text-white m-2 transition duration-300 hover:text-yellow-500"
+                >
                   {page.option}
                 </Link>
               ))}
@@ -186,7 +190,13 @@ export default function ResponsiveAppBar() {
                     <Link href={`${option.link}`}>{option.option}</Link>
                   </MenuItem>
                 ))}
-                <Divider />
+                <Divider
+                  sx={{
+                    //   width: "100%",
+                    bgcolor: "yellowgreen",
+                    //   m: "1rem",
+                  }}
+                />
                 <MenuItem>
                   <Typography
                     onClick={() => {
@@ -196,8 +206,13 @@ export default function ResponsiveAppBar() {
                       handleCloseUserMenu();
                       router.replace("/");
                     }}
+                    sx={{
+                      color: "red",
+                      textAlign: "center",
+                      width: "100%",
+                    }}
                   >
-                    Log out
+                    Log Out
                   </Typography>
                 </MenuItem>
               </Menu>
@@ -275,7 +290,7 @@ export default function ResponsiveAppBar() {
           <Divider
             sx={{
               width: "100%",
-              bgcolor: "yellow",
+              bgcolor: "yellowgreen",
               m: "1rem",
             }}
           />
@@ -283,7 +298,7 @@ export default function ResponsiveAppBar() {
             <Link
               key={page.option}
               href={`${page.link}`}
-              className="text-white m-2"
+              className="text-white m-2 transition duration-300 hover:text-yellow-500"
               onClick={() => {
                 setDrawerState(false);
               }}
