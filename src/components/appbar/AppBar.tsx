@@ -58,8 +58,8 @@ export default function ResponsiveAppBar() {
 
   return (
     <>
-      <AppBar position="static" sx={{ backgroundColor: "#081426" }}>
-        <Container maxWidth="xl">
+      <AppBar position="sticky" sx={{ backgroundColor: "#081426" }}>
+        <Container>
           <Toolbar disableGutters>
             <MovieCreation
               sx={{
@@ -151,11 +151,11 @@ export default function ResponsiveAppBar() {
                 <Box
                   sx={{ display: { xs: "none", md: "flex" }, gap: "0.2rem" }}
                 >
-                  <Button href="/login" sx={{ color: "yellow" }}>
-                    Login
+                  <Button sx={{ color: "yellow" }}>
+                    <Link href="/login">Login</Link>
                   </Button>
-                  <Button href="/signup" sx={{ color: "yellow" }}>
-                    Sign up
+                  <Button sx={{ color: "yellow" }}>
+                    <Link href="/signup">Sign up</Link>
                   </Button>
                 </Box>
               )}
@@ -185,6 +185,13 @@ export default function ResponsiveAppBar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
+                <Typography
+                  sx={{ textAlign: "center", p: "0.5rem", color: "white" }}
+                >
+                  Hi,{" "}
+                  {loggedInUser.charAt(0).toUpperCase() + loggedInUser.slice(1)}
+                  !
+                </Typography>
                 {userOptions.map((option) => (
                   <MenuItem key={option.option} onClick={handleCloseUserMenu}>
                     <Link href={`${option.link}`}>{option.option}</Link>
@@ -192,9 +199,7 @@ export default function ResponsiveAppBar() {
                 ))}
                 <Divider
                   sx={{
-                    //   width: "100%",
                     bgcolor: "yellowgreen",
-                    //   m: "1rem",
                   }}
                 />
                 <MenuItem>
