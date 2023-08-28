@@ -99,7 +99,7 @@ export default function Carousel(props: CarouselProps) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center ">
+    <div className="flex flex-col items-center justify-center">
       {isSlideReady && (
         <h6 className="text-yellow-500 text-2xl mb-2 font-semibold ">
           {props.title}
@@ -108,7 +108,8 @@ export default function Carousel(props: CarouselProps) {
       <div className="flex items-center justify-center">
         {isSlideReady && (
           <KeyboardArrowLeftIcon
-            className="text-yellow-500 hover:text-white cursor-pointer transition duration-300 w-8 h-36 bg-black bg-opacity-50 rounded-md m-1 hidden sm:block"
+            sx={{ width: "2rem", height: "7rem" }}
+            className="text-yellow-500 hover:text-white cursor-pointer transition duration-300 bg-black bg-opacity-50 rounded-md m-2 hidden sm:block"
             onClick={() => slider?.current?.slickPrev()}
           >
             Prev
@@ -123,7 +124,8 @@ export default function Carousel(props: CarouselProps) {
         </Slider>
         {isSlideReady && (
           <KeyboardArrowRightIcon
-            className="text-yellow-500 hover:text-white cursor-pointer transition duration-300 w-8 h-36 bg-black bg-opacity-50 rounded-md m-1 hidden sm:block"
+            sx={{ width: "2rem", height: "7rem" }}
+            className="text-yellow-500 hover:text-white cursor-pointer transition duration-300 bg-black bg-opacity-50 rounded-md m-2 hidden sm:block"
             onClick={() => slider?.current?.slickNext()}
           >
             Next
