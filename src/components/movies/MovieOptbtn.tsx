@@ -30,6 +30,10 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
   const { isLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
+    if (!token) {
+      return;
+    }
+    console.log("here");
     async function fetchData() {
       try {
         const response = await MovieService.getMovieStatus(
