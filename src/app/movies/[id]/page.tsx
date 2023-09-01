@@ -130,29 +130,32 @@ export default async function Page({ params }: { params: { id: number } }) {
                 <span className=" font-extrabold">·</span> {movieInfo.runtime}
               </p>
             </div>
-            <div className="flex m-2 justify-center items-center">
-              <div className="group relative inline-grid cursor-pointer">
-                <CircularProgress
-                  variant="determinate"
-                  value={movieInfo.voteAvg}
-                  className=" bg-myBlueDark rounded-full group-hover:text-yellow-500 transition-colors duration-300"
-                  size={"4rem"}
-                />
-                <div className="text-blue-500 font-bold text-lg absolute top-0 right-0 left-0 bottom-0 grid justify-center items-center group-hover:text-yellow-500 transform duration-300">
-                  {`${movieInfo.voteAvg}%`}
-                </div>
-              </div>
-              <div className="flex justify-center items-start flex-col m-2">
+            <div className="flex flex-wrap gap-2 m-2 justify-center items-center">
+              <div className="flex items-center gap-1">
+                <div className="group relative inline-grid cursor-pointer">
+                  <CircularProgress
+                    variant="determinate"
+                    value={movieInfo.voteAvg}
+                    className=" bg-myBlueDark rounded-full group-hover:text-yellow-500 transition-colors duration-300"
+                    size={"4rem"}
+                  />
+                  <div className="text-blue-500 font-bold text-lg absolute top-0 right-0 left-0 bottom-0 grid justify-center items-center group-hover:text-yellow-500 transform duration-300">
+                    {`${movieInfo.voteAvg}%`}
+                  </div>
+                </div>{" "}
                 <p className=" leading-4 font-semibold">
                   User <br />
                   Score
                 </p>
               </div>
               <MovieOptBtn data={btnInfo}></MovieOptBtn>
-              <PlayArrowIcon
-                className="ml-3 hover:text-yellow-700 cursor-pointer bg-myBlueDark p-2 rounded-full transition-colors duration-300"
-                style={{ width: "2.5rem", height: "2.5rem" }}
-              ></PlayArrowIcon>
+              <div className="flex flex-row items-center bg-myBlueDark pr-3 rounded-md">
+                <PlayArrowIcon
+                  className="hover:text-yellow-700 cursor-pointer bg-myBlueDark p-2 rounded-full transition-colors duration-300"
+                  style={{ width: "2.5rem", height: "2.5rem" }}
+                ></PlayArrowIcon>
+                <p className=" text-yellow-600">TRAILER</p>
+              </div>
             </div>
             <p className="m-2 text-yellow-600 italic">{movieInfo.tagline}</p>
             <div className="m-2">

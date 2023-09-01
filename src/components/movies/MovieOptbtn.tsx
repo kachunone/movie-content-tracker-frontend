@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
+import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
+import StarIcon from "@mui/icons-material/Star";
 import { getCookie } from "cookies-next";
 import { StaticImageData } from "next/image";
 import Modal from "@mui/material/Modal";
-import { useRouter } from "next/navigation";
 import { MovieService } from "@/services/Movie";
 import { AuthContext } from "@/context/auth";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -27,8 +28,26 @@ interface MovieOptBtnProps {
 export default function MovieOptBtn(props: MovieOptBtnProps) {
   const token = getCookie("token");
   const { isLoggedIn } = useContext(AuthContext);
-  const router = useRouter();
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await MovieService.getMovieStatus(
+          props.data.movieId,
+          token as string
+        );
+        if (response.statusCode === 200) {
+          setMovieStatus(response.movieStatus);
+        }
+      } catch (error) {
+        // Handle errors here
+      }
+    }
+
+    fetchData();
+  }, [token]);
+
+  const [movieStatus, setMovieStatus] = useState("not-set");
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -44,6 +63,7 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleCloseMenu = async (mark: string) => {
     setAnchorEl(null);
     if (!isLoggedIn) {
@@ -70,6 +90,7 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
       let msg = { severity: "error", message: "Action Failed" };
       if (response.statusCode === 200) {
         msg = { severity: "success", message: "Movie Added" };
+        setMovieStatus(mark);
       }
       setPrompt(msg);
       handleOpen();
@@ -81,12 +102,35 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
 
   return (
     <div>
-      <div onClick={handleClick} className="m-1">
-        <BookmarkAddIcon
-          style={{ width: "2.5rem", height: "2.5rem" }}
-          className="hover:text-yellow-700 cursor-pointer bg-myBlueDark p-2 rounded-full transition-colors duration-300"
-        />
-      </div>
+      {movieStatus === "not-set" && (
+        <div className="m-1 flex flex-row items-center bg-myBlueDark pr-3 rounded-md">
+          <div onClick={handleClick}>
+            <BookmarkAddIcon
+              style={{ width: "2.5rem", height: "2.5rem" }}
+              className="cursor-pointer p-2 rounded-md hover:text-yellow-700 duration-300 transition-colors"
+            />
+          </div>
+          <p className=" text-yellow-100">ADD TO WATCHLIST</p>
+        </div>
+      )}
+      {movieStatus === "watched" && (
+        <div className="m-1 flex flex-row items-center bg-myBlueDark pr-3 rounded-md">
+          <BookmarkAddedIcon
+            style={{ width: "2.5rem", height: "2.5rem" }}
+            className="p-2 rounded-md"
+          />
+          <p className=" text-yellow-100">WATCHED</p>
+        </div>
+      )}
+      {movieStatus === "wish to watch" && (
+        <div className="m-1 flex flex-row items-center bg-myBlueDark pr-3 rounded-md">
+          <StarIcon
+            style={{ width: "2.5rem", height: "2.5rem" }}
+            className="p-2 rounded-full"
+          />
+          <p className="text-yellow-100">WISH TO WATCH</p>
+        </div>
+      )}
       <Menu
         anchorEl={anchorEl}
         open={openMenu}

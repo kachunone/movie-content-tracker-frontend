@@ -79,4 +79,15 @@ export class MovieService {
     const response = await res.json();
     return Array.isArray(response) ? response : [];
   }
+
+  static async getMovieStatus(movieId: number, token?: string) {
+    const res = await fetch(`${BASE_URL}/user/check-status/${movieId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return await res.json();
+  }
 }
