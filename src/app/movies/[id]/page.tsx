@@ -130,7 +130,7 @@ export default async function Page({ params }: { params: { id: number } }) {
                 <span className=" font-extrabold">·</span> {movieInfo.runtime}
               </p>
             </div>
-            <div className="flex flex-wrap gap-2 m-2 justify-center items-center">
+            <div className="flex flex-wrap gap-2 m-2 items-center justify-center">
               <div className="flex items-center gap-1">
                 <div className="group relative inline-grid cursor-pointer">
                   <CircularProgress
@@ -149,12 +149,12 @@ export default async function Page({ params }: { params: { id: number } }) {
                 </p>
               </div>
               <MovieOptBtn data={btnInfo}></MovieOptBtn>
-              <div className="flex flex-row items-center bg-myBlueDark pr-3 rounded-md">
+              <div className="flex flex-row items-center rounded-md gap-2">
                 <PlayArrowIcon
-                  className="hover:text-yellow-700 cursor-pointer bg-myBlueDark p-2 rounded-full transition-colors duration-300"
+                  className="hover:text-red-900 text-red-500 p-2 cursor-pointer rounded-full bg-myBlueDark transition-colors duration-300"
                   style={{ width: "2.5rem", height: "2.5rem" }}
                 ></PlayArrowIcon>
-                <p className=" text-yellow-600">TRAILER</p>
+                <p className=" text-yellow-500">Play Trailer</p>
               </div>
             </div>
             <p className="m-2 text-yellow-600 italic">{movieInfo.tagline}</p>
