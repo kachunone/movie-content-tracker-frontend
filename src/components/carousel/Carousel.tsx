@@ -8,8 +8,6 @@ import MoviesCard from "../movies/MoviesCard";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { LazyLoadTypes } from "react-slick";
-import CircularProgress from "@mui/material/CircularProgress";
-import Backdrop from "@mui/material/Backdrop";
 
 interface Movie {
   key: number;

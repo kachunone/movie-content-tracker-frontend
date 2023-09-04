@@ -142,7 +142,7 @@ export default async function Page({ params }: { params: { id: number } }) {
                   <div className="text-blue-500 font-bold text-lg absolute top-0 right-0 left-0 bottom-0 grid justify-center items-center group-hover:text-yellow-500 transform duration-300">
                     {`${movieInfo.voteAvg}%`}
                   </div>
-                </div>{" "}
+                </div>
                 <p className=" leading-4 font-semibold">
                   User <br />
                   Score

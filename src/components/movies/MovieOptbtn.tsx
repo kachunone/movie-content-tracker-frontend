@@ -33,7 +33,6 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
     if (!token) {
       return;
     }
-    console.log("here");
     async function fetchData() {
       try {
         const response = await MovieService.getMovieStatus(
@@ -49,7 +48,7 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
     }
 
     fetchData();
-  }, [token]);
+  }, []);
 
   const [movieStatus, setMovieStatus] = useState("not-set");
   const [open, setOpen] = React.useState(false);

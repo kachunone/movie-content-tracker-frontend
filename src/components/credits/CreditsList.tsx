@@ -1,7 +1,5 @@
 import React from "react";
 import CreditsCard from "./CreditsCard";
-import { Box } from "@mui/material";
-import { Height } from "@mui/icons-material";
 
 interface Credit {
   id: number;
@@ -47,7 +45,7 @@ export default async function CreditsList(props: CreditsListProps) {
   return (
     <div className="flex flex-col items-center justify-center mt-6">
       <h6 className="text-yellow-500 text-2xl mb-2 font-semibold">Credits</h6>
-      <div className="flex items-center overflow-auto max-w-[75vw] scrollbar-thin scrollbar-track-myBlueLight scrollbar-thumb-yellow-500 rounded-md pb-3">
+      <div className="flex items-center overflow-auto max-w-[75vw] scrollbar-thin scrollbar-track-myBlueLight scrollbar-thumb-yellow-500 rounded-md pb-3 mb-10">
         {credits}
       </div>
     </div>
