@@ -1,10 +1,11 @@
 import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { CircularProgress } from "@mui/material";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+
 import NoneImage from "../../../../public/peakpx.jpg";
 import MovieOptBtn from "@/components/movies/MovieOptbtn";
 import CreditsList from "@/components/credits/CreditsList";
+import { VideoView } from "@/components/Trailer/VideoView";
 
 function formatCurrency(number: number): string {
   return number.toLocaleString("en-US", {
@@ -64,8 +65,34 @@ async function getMovie(id: number) {
   return res.json();
 }
 
+async function getVideoId(movieId: number) {
+  const moviesAPI = process.env.NEXT_PUBLIC_MOVIES_API_KEY;
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${moviesAPI}`
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch videos");
+  }
+
+  let firstTeaserKey = "";
+
+  const videos = await res.json();
+  for (const video of videos["results"]) {
+    if (video.site === "YouTube") {
+      if (video.type === "Trailer") {
+        return video.key;
+      } else if (video.type === "Teaser" && !firstTeaserKey) {
+        firstTeaserKey = video.key;
+      }
+    }
+  }
+  return firstTeaserKey;
+}
+
 export default async function Page({ params }: { params: { id: number } }) {
   const movie = await getMovie(params.id);
+  const videoId = await getVideoId(params.id);
 
   const movieInfo: MovieInfo = {
     poster:
@@ -132,14 +159,14 @@ export default async function Page({ params }: { params: { id: number } }) {
             </div>
             <div className="flex flex-wrap gap-2 m-2 items-center justify-center">
               <div className="flex items-center gap-1">
-                <div className="group relative inline-grid cursor-pointer">
+                <div className="group relative inline-grid">
                   <CircularProgress
                     variant="determinate"
                     value={movieInfo.voteAvg}
-                    className=" bg-myBlueDark rounded-full group-hover:text-yellow-500 transition-colors duration-300"
+                    className=" bg-myBlueDark rounded-full"
                     size={"4rem"}
                   />
-                  <div className="text-blue-500 font-bold text-lg absolute top-0 right-0 left-0 bottom-0 grid justify-center items-center group-hover:text-yellow-500 transform duration-300">
+                  <div className="text-blue-500 font-bold text-lg absolute top-0 right-0 left-0 bottom-0 grid justify-center items-center">
                     {`${movieInfo.voteAvg}%`}
                   </div>
                 </div>
@@ -150,11 +177,7 @@ export default async function Page({ params }: { params: { id: number } }) {
               </div>
               <MovieOptBtn data={btnInfo}></MovieOptBtn>
               <div className="flex flex-row items-center rounded-md gap-2">
-                <PlayArrowIcon
-                  className="hover:text-red-900 text-red-500 p-2 cursor-pointer rounded-full bg-myBlueDark transition-colors duration-300"
-                  style={{ width: "2.5rem", height: "2.5rem" }}
-                ></PlayArrowIcon>
-                <p className=" text-yellow-500">Play Trailer</p>
+                <VideoView videoId={videoId} />
               </div>
             </div>
             <p className="m-2 text-yellow-600 italic">{movieInfo.tagline}</p>

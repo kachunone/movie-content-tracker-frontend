@@ -48,7 +48,7 @@ export default function MovieOptBtn(props: MovieOptBtnProps) {
     }
 
     fetchData();
-  }, []);
+  }, [token, props.data.movieId]);
 
   const [movieStatus, setMovieStatus] = useState("not-set");
   const [open, setOpen] = React.useState(false);
