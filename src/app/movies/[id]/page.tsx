@@ -159,14 +159,14 @@ export default async function Page({ params }: { params: { id: number } }) {
             </div>
             <div className="flex flex-wrap gap-2 m-2 items-center justify-center">
               <div className="flex items-center gap-1">
-                <div className="group relative inline-grid">
+                <div className="group relative inline-grid hover:scale-150 transition duration-300 ">
                   <CircularProgress
                     variant="determinate"
                     value={movieInfo.voteAvg}
-                    className=" bg-myBlueDark rounded-full"
+                    className=" bg-myBlueDark rounded-full text-blue-500 group-hover:text-yellow-500 transition-colors duration-300"
                     size={"4rem"}
                   />
-                  <div className="text-blue-500 font-bold text-lg absolute top-0 right-0 left-0 bottom-0 grid justify-center items-center">
+                  <div className="text-blue-500 group-hover:text-yellow-500 transition duration-300 font-bold text-lg absolute top-0 right-0 left-0 bottom-0 grid justify-center items-center">
                     {`${movieInfo.voteAvg}%`}
                   </div>
                 </div>

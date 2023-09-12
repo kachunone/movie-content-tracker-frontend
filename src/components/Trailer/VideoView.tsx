@@ -16,7 +16,7 @@ export function VideoView(props: VideoViewProps) {
   return (
     <>
       <PlayArrowIcon
-        className="hover:text-red-900 text-red-500 p-2 cursor-pointer rounded-full bg-myBlueDark transition-colors duration-300"
+        className="hover:text-red-300 text-red-500 p-2 cursor-pointer rounded-full bg-myBlueDark duration-300 hover:scale-125 transition"
         style={{ width: "2.5rem", height: "2.5rem" }}
         onClick={handleOpenVideo}
       ></PlayArrowIcon>
